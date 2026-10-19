@@ -305,7 +305,7 @@
       var bestand = V(r, 'bestand');
       if (bestand) {
         var a = el('a', 'chip', T('riders.download'));
-        a.href = 'riders/' + bestand; a.target = '_blank'; a.rel = 'noopener';
+        a.href = 'riders/' + bestand; a.target = '_blank'; a.rel = 'noopener'; a.setAttribute('download', bestand);
         li.appendChild(a);
       } else {
         li.appendChild(el('span', 'chip op-aanvraag', T('riders.aanvraag')));

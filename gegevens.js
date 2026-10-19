@@ -79,9 +79,9 @@ const FOTOS = [
    --------------------------------------------------------- */
 const RIDERS = [
   { titel: 'Technische rider', titel_en: 'Technical rider',
-    omschrijving: 'Backline, monitoring en kanalenlijst', omschrijving_en: 'Backline, monitoring and input list', bestand: '' },
+    omschrijving: 'Bezetting, inputlijst, monitors, backline en stroom', omschrijving_en: 'Line-up, input list, monitors, backline and power', bestand: 'pretty-vacant-rider-2026.pdf' },
   { titel: 'Stageplot', titel_en: 'Stage plot',
-    omschrijving: 'Opstelling op het podium', omschrijving_en: 'Stage layout', bestand: '' },
+    omschrijving: 'Opstelling op het podium (pagina 3 van de rider)', omschrijving_en: 'Stage layout (page 3 of the rider)', bestand: 'pretty-vacant-rider-2026.pdf' },
   { titel: 'Hospitality rider', titel_en: 'Hospitality rider',
     omschrijving: 'Kleedkamer, catering en parkeren', omschrijving_en: 'Dressing room, catering and parking', bestand: '' },
 ];
