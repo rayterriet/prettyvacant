@@ -329,6 +329,34 @@
     } catch (e) { selecteer(); }
   });
 
+  /* ---------- Vindbaarheid: optredens als gestructureerde gegevens voor Google ---------- */
+  (function () {
+    if (!komend.length) return;
+    var events = komend.filter(function (g) { return !g.voorbeeld; }).map(function (g) {
+      return {
+        '@type': 'MusicEvent',
+        'name': 'Pretty Vacant, Sex Pistols tribute' + (g.zaal ? ' in ' + g.zaal : ''),
+        'startDate': g.datum + (g.tijd ? 'T' + g.tijd : ''),
+        'eventStatus': 'https://schema.org/EventScheduled',
+        'eventAttendanceMode': 'https://schema.org/OfflineEventAttendanceMode',
+        'location': {
+          '@type': 'Place',
+          'name': g.zaal || g.plaats,
+          'address': { '@type': 'PostalAddress', 'addressLocality': g.plaats || '', 'addressCountry': 'NL' }
+        },
+        'image': 'https://prettyvacant.nl/img/deelbeeld.jpg',
+        'description': 'Pretty Vacant speelt de nummers van de Sex Pistols live.',
+        'performer': { '@type': 'MusicGroup', '@id': 'https://prettyvacant.nl/#band', 'name': 'Pretty Vacant' },
+        'organizer': { '@type': 'Organization', 'name': g.zaal || 'Pretty Vacant', 'url': g.tickets || 'https://prettyvacant.nl/' },
+        'url': g.tickets || 'https://prettyvacant.nl/#tour'
+      };
+    });
+    var sc = document.createElement('script');
+    sc.type = 'application/ld+json';
+    sc.textContent = JSON.stringify({ '@context': 'https://schema.org', '@graph': events });
+    document.head.appendChild(sc);
+  })();
+
   /* ---------- Alles tekenen, en opnieuw bij taalwissel ---------- */
   function teken() {
     vasteTeksten(); knipKoppen(); band(); tour(); video(); fotos(); riders();
