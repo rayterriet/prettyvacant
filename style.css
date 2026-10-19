@@ -1,25 +1,23 @@
 /* Pretty Vacant
-   Layout: Union Jack als ondergrond, knipletter-koppen (ransom note),
-   tourlijst als geplakte poster op crème papier. */
+   Stijl afgeleid van het eigen artwork "Never mind the Sex Pistols, here's Pretty Vacant":
+   geel vlak, roze schuine stroken met gele letters, zware smalle zwarte koppen,
+   een klassieke serif voor kleine regels. De versleten Union Jack draagt de tour. */
 :root {
-  --navy: #0b1d4a;
-  --navy-diep: #07122f;
-  --rood: #c8102e;
-  --wit: #f7f3ea;
-  --zwart: #0a0a0a;
-  --geel: #f5c518;
+  --geel: #f4c821;
+  --roze: #ed1077;
+  --roze-diep: #c40b61;
+  --zwart: #231f20;
+  --wit: #fbf7ec;
   --papier: #ebe3cf;
   --inkt: #1a1714;
-  --gedempt: #b9c2d9;
 
   --f-display: "Anton", "Impact", "Haettenschweiler", "Arial Narrow Bold", sans-serif;
-  --f-slab: "Alfa Slab One", "Rockwell Extra Bold", Georgia, serif;
-  --f-zwaar: "Bowlby One", "Arial Black", sans-serif;
+  --f-serif: "Tinos", "Times New Roman", Times, serif;
   --f-tekst: "Archivo", "Helvetica Neue", Arial, sans-serif;
   --f-type: "Special Elite", "Courier New", monospace;
 
   --breed: 1120px;
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 * { box-sizing: border-box; }
@@ -28,8 +26,8 @@ html { scroll-behavior: smooth; scroll-padding-top: 76px; }
 
 body {
   margin: 0;
-  background: var(--navy-diep);
-  color: var(--wit);
+  background: var(--geel);
+  color: var(--zwart);
   font-family: var(--f-tekst);
   font-size: 17px;
   line-height: 1.6;
@@ -42,7 +40,11 @@ body::before {
 img { max-width: 100%; display: block; height: auto; }
 a { color: inherit; }
 a:focus-visible, button:focus-visible, summary:focus-visible {
-  outline: 3px solid var(--geel); outline-offset: 3px;
+  outline: 3px solid var(--roze); outline-offset: 3px;
+}
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
 }
 
 .wrap {
@@ -53,150 +55,145 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 }
 
 .label {
-  font-family: var(--f-type);
+  font-family: var(--f-serif);
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: .12em;
-  font-size: .82rem;
+  letter-spacing: .1em;
+  font-size: .85rem;
   margin: 0;
 }
 
-/* ---------- Knipletters ---------- */
-.ransom { margin: 0; font-weight: 400; line-height: 1.15; text-wrap: balance; }
+/* ---------- Koppen: gele letters op een schuine roze strook ---------- */
+.ransom { margin: 0; font-weight: 400; line-height: 1.1; text-wrap: balance; }
 .woord { display: inline-block; white-space: nowrap; }
-.rl {
+.rl { display: inline-block; line-height: 1; padding: 0 .015em; }
+
+.kop {
   display: inline-block;
-  padding: .04em .1em .02em;
-  margin: 0 .025em;
-  line-height: 1;
-  box-shadow: .05em .07em 0 rgba(0, 0, 0, .45);
+  font-size: clamp(2.1rem, 6.4vw, 3.6rem);
+  background: var(--roze);
+  color: var(--geel);
+  padding: .14em .5em .2em .42em;
+  margin-bottom: 30px;
+  transform: rotate(-2.2deg);
+  clip-path: polygon(0 9%, 100% 0, 98.5% 100%, 1.5% 92%);
+  max-width: 100%;
 }
-.rl.zw { background: var(--zwart); color: var(--wit); }
-.rl.wi { background: var(--wit); color: var(--zwart); }
-.rl.ro { background: var(--rood); color: var(--wit); }
-.rl.ge { background: var(--geel); color: var(--zwart); }
-.rl.pa { background: var(--papier); color: var(--inkt); }
-.rl.kaal { background: none; box-shadow: none; color: var(--wit); }
-.f1 { font-family: var(--f-display); }
-.f2 { font-family: var(--f-slab); }
-.f3 { font-family: var(--f-zwaar); }
-.f4 { font-family: var(--f-type); font-weight: 700; }
+.kop .rl { font-family: var(--f-display); color: var(--geel); }
+.kop .woord + .woord { margin-left: .18em; }
 
 /* ---------- Menubalk ---------- */
 .balk {
   position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20;
-  background: var(--zwart);
-  border-bottom: 3px solid var(--rood);
+  background: var(--zwart); color: var(--geel);
 }
 .balk-in {
   max-width: var(--breed); margin: 0 auto;
   padding: 10px max(16px, env(safe-area-inset-right, 0px)) 10px max(16px, env(safe-area-inset-left, 0px));
-  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  display: flex; align-items: center; gap: 16px;
 }
 .merk { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
 .merk img { width: 40px; height: 40px; }
 .merk span { font-family: var(--f-display); font-size: 1.35rem; text-transform: uppercase; letter-spacing: .02em; }
-nav { display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; min-width: 0; }
+nav { display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; min-width: 0; margin-left: auto; }
 nav::-webkit-scrollbar { display: none; }
 nav a {
   font-family: var(--f-display); text-transform: uppercase; letter-spacing: .04em;
   font-size: 1.05rem; text-decoration: none; padding: 6px 10px; white-space: nowrap;
 }
-nav a:hover { background: var(--wit); color: var(--zwart); }
-nav .nav-boek { background: var(--rood); }
-nav .nav-boek:hover { background: var(--wit); }
-@media (max-width: 480px) { nav a[href="#band"], nav a[href="#video"], nav a[href="#fotos"] { display: none; } }
+nav a:hover { background: var(--geel); color: var(--zwart); }
+nav .nav-boek { background: var(--roze); color: var(--geel); }
+nav .nav-boek:hover { background: var(--geel); color: var(--zwart); }
+@media (max-width: 480px) { nav a[href="#band"], nav a[href="#video"], nav a[href="#fotos"], nav a[href="#riders"] { display: none; } }
 @media (max-width: 560px) { .merk span { display: none; } nav a { font-size: .98rem; padding: 6px 8px; } }
 
-/* ---------- Hero ---------- */
-.hero {
-  position: relative; overflow: hidden;
-  background: var(--navy) url("img/union-jack-versleten.jpg") center / cover no-repeat;
-  padding-block: clamp(48px, 9vw, 110px) clamp(40px, 7vw, 80px);
+.taal { display: flex; flex-shrink: 0; border: 2px solid var(--geel); }
+.taal button {
+  font-family: var(--f-display); font-size: .95rem; letter-spacing: .06em;
+  background: transparent; color: var(--geel); border: 0; padding: 4px 9px; cursor: pointer; line-height: 1.2;
 }
-.hero::before {
-  content: ""; position: absolute; inset: 0;
-  background: radial-gradient(ellipse 58% 55% at 50% 50%, rgba(8, 8, 10, .82) 0 30%, rgba(8, 8, 10, .4) 60%, rgba(8, 8, 10, .1) 100%);
+.taal button + button { border-left: 2px solid var(--geel); }
+.taal button[aria-pressed="true"] { background: var(--geel); color: var(--zwart); }
+.taal button:not([aria-pressed="true"]):hover { background: var(--roze); }
+
+/* ---------- Hero: het artwork ---------- */
+.hero { padding-block: clamp(20px, 4vw, 44px) clamp(40px, 6vw, 72px); }
+.hero-in { display: flex; flex-direction: column; align-items: center; gap: clamp(18px, 3vw, 30px); }
+.hero-art { width: 100%; max-width: 1088px; }
+.hero-onder { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 18px; max-width: 44rem; }
+.jubileum {
+  margin: 0; font-family: var(--f-serif); text-transform: uppercase; font-weight: 700;
+  font-size: clamp(1rem, 2.6vw, 1.3rem); letter-spacing: .06em; line-height: 1.5;
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 14px;
 }
-.hero::after {
-  /* korrel */
-  content: ""; position: absolute; inset: 0; opacity: .12; mix-blend-mode: overlay; pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-.hero-in { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 22px; }
-.label-hero { background: var(--wit); color: var(--zwart); padding: 4px 10px; transform: rotate(-2deg); }
-.scheur {
-  background: var(--zwart);
-  padding: clamp(14px, 3vw, 28px) clamp(14px, 4vw, 40px);
-  clip-path: polygon(0 6%, 4% 0, 11% 4%, 19% 1%, 27% 5%, 36% 0, 45% 3%, 53% 0, 62% 4%, 71% 1%, 80% 5%, 88% 0, 95% 4%, 100% 2%, 98% 18%, 100% 34%, 97% 52%, 100% 70%, 98% 86%, 100% 100%, 92% 96%, 84% 100%, 75% 95%, 66% 100%, 57% 96%, 48% 100%, 39% 95%, 30% 100%, 21% 96%, 12% 100%, 5% 95%, 0 100%, 2% 82%, 0 64%, 3% 46%, 0 28%);
-  max-width: 100%;
-}
-.hero h1 { font-size: clamp(2.7rem, 11.5vw, 7.4rem); }
-.hero h1 .woord { margin: .04em .12em; }
-.jubileum { margin: 0; font-size: clamp(1.05rem, 3.4vw, 1.7rem); line-height: 1.5; text-wrap: balance; }
-.hero-onder { display: flex; flex-direction: column; align-items: center; gap: 18px; max-width: 40rem; }
-.intro { margin: 0; font-size: 1.12rem; color: var(--wit); text-shadow: 0 1px 8px rgba(0,0,0,.8); }
+.jubileum span + span::before { content: "\2605"; color: var(--roze); margin-right: 14px; }
+.intro { margin: 0; font-size: 1.15rem; }
 .knoppen { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
 .knop {
-  font-family: var(--f-display); text-transform: uppercase; letter-spacing: .05em; font-size: 1.2rem;
-  text-decoration: none; padding: 10px 22px; border: 3px solid var(--zwart);
+  font-family: var(--f-display); text-transform: uppercase; letter-spacing: .05em; font-size: 1.25rem;
+  text-decoration: none; padding: 10px 24px; border: 3px solid var(--zwart);
   box-shadow: 4px 4px 0 var(--zwart); transition: transform .12s, box-shadow .12s;
 }
 .knop:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--zwart); }
-.knop-rood { background: var(--rood); color: var(--wit); }
-.knop-wit { background: var(--wit); color: var(--zwart); }
+.knop-roze { background: var(--roze); color: var(--geel); }
+.knop-zwart { background: var(--zwart); color: var(--geel); }
 .volgende {
   margin: 0; font-family: var(--f-type); font-size: .98rem;
-  background: var(--geel); color: var(--zwart); padding: 6px 12px; transform: rotate(1deg);
+  background: var(--zwart); color: var(--geel); padding: 6px 14px; transform: rotate(-1deg);
 }
 
 /* ---------- Secties ---------- */
 .sectie { padding-block: clamp(56px, 8vw, 96px); }
-.sectie + .sectie { border-top: 1px dashed rgba(247, 243, 234, .18); }
-.kop { font-size: clamp(2rem, 6vw, 3.2rem); margin-bottom: 28px; }
-.sectie-intro { color: var(--gedempt); max-width: 34rem; margin: 0; }
+.sectie-intro { max-width: 36rem; margin: 0; }
 
 /* ---------- De band ---------- */
-.band .sectie-intro { margin-top: -12px; }
+.band { border-top: 6px solid var(--zwart); }
 .leden {
   list-style: none; margin: 32px 0 0; padding: 0;
   display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 22px;
 }
 @media (max-width: 860px) { .leden { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .lid {
-  background: var(--navy); border-top: 6px solid var(--rood);
-  padding: 22px 18px 20px; display: grid; gap: 10px; justify-items: start; align-content: start;
+  background: var(--zwart); color: var(--geel);
+  padding: 22px 18px 20px; display: grid; gap: 12px; justify-items: start; align-content: start;
+  box-shadow: 6px 6px 0 var(--roze);
 }
-.lid:nth-child(even) { border-top-color: var(--wit); }
-.lid-foto { width: 100%; aspect-ratio: 1; object-fit: cover; border: 4px solid var(--wit); margin-bottom: 6px; }
-.lid-naam { font-size: clamp(1.5rem, 3.4vw, 2.1rem); }
+.lid:nth-child(odd) { transform: rotate(-.8deg); }
+.lid:nth-child(even) { transform: rotate(.6deg); }
+.lid-foto { width: 100%; aspect-ratio: 1; object-fit: cover; border: 4px solid var(--geel); margin-bottom: 4px; }
+.lid-naam { font-size: clamp(1.6rem, 3.4vw, 2.2rem); }
+.lid-naam .rl { font-family: var(--f-display); color: var(--geel); }
 .lid-rol {
-  margin: 0; font-family: var(--f-type); text-transform: uppercase; letter-spacing: .12em; font-size: .85rem;
-  background: var(--wit); color: var(--zwart); padding: 3px 9px; transform: rotate(-2deg);
+  margin: 0; font-family: var(--f-serif); font-weight: 700; text-transform: uppercase; letter-spacing: .12em; font-size: .85rem;
+  background: var(--roze); color: var(--geel); padding: 3px 10px; transform: rotate(-2deg);
 }
 
-/* ---------- Tour (poster) ---------- */
+/* ---------- Tour: poster op de versleten Union Jack ---------- */
 .tour {
-  padding-block: clamp(56px, 8vw, 96px);
-  background:
-    repeating-linear-gradient(135deg, rgba(200, 16, 46, .08) 0 22px, transparent 22px 44px),
-    var(--navy);
-}
-.papier {
   position: relative;
+  padding-block: clamp(56px, 8vw, 96px);
+  background: var(--zwart) url("img/union-jack-versleten.jpg") center / cover no-repeat;
+}
+.tour::before { content: ""; position: absolute; inset: 0; background: rgba(20, 16, 18, .35); }
+.tour-grid { position: relative; display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 40px; align-items: center; }
+@media (max-width: 880px) { .tour-grid { grid-template-columns: 1fr; } .tourposter { max-width: 560px; justify-self: center; } }
+.papier {
+  position: relative; min-width: 0;
   background: var(--papier); color: var(--inkt);
   padding: clamp(28px, 5vw, 56px) clamp(18px, 5vw, 60px);
-  box-shadow: 0 18px 40px rgba(0, 0, 0, .45);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, .5);
   transform: rotate(-.4deg);
-  max-width: 900px; margin: 0 auto;
 }
 .papier::before, .papier::after {
-  /* plakband */
   content: ""; position: absolute; top: -14px; width: 110px; height: 30px;
   background: rgba(245, 240, 220, .75); box-shadow: 0 1px 3px rgba(0,0,0,.2);
 }
 .papier::before { left: 8%; transform: rotate(-6deg); }
 .papier::after { right: 8%; transform: rotate(5deg); }
-.papier .kop .rl.kaal { color: var(--inkt); }
+.tourposter { margin: 0; transform: rotate(1.6deg); }
+.tourposter button { all: unset; cursor: zoom-in; display: block; }
+.tourposter button:focus-visible { outline: 3px solid var(--geel); outline-offset: 4px; }
+.tourposter img { border: 8px solid var(--papier); box-shadow: 0 18px 40px rgba(0, 0, 0, .5); }
 
 .gigs { list-style: none; margin: 0; padding: 0; }
 .gig {
@@ -206,29 +203,29 @@ nav .nav-boek:hover { background: var(--wit); }
 .gig:last-child { border-bottom: 0; }
 .gig-datum {
   font-family: var(--f-display); font-size: clamp(2rem, 5.5vw, 2.9rem); line-height: 1;
-  font-variant-numeric: tabular-nums; color: var(--rood); white-space: nowrap; min-width: 3.4ch;
+  font-variant-numeric: tabular-nums; color: var(--roze); white-space: nowrap; min-width: 3.4ch;
 }
-.gig:nth-child(even) .gig-datum { color: var(--navy); }
+.gig:nth-child(even) .gig-datum { color: var(--zwart); }
 .gig-wat { min-width: 0; }
 .gig-zaal { font-family: var(--f-display); text-transform: uppercase; font-size: clamp(1.25rem, 3.6vw, 1.75rem); line-height: 1.1; letter-spacing: .01em; }
-.gig-meta { font-family: var(--f-type); font-size: .9rem; color: #5a5249; }
+.gig-meta { font-family: var(--f-serif); font-size: .95rem; color: #5a5249; }
 .gig-actie { justify-self: end; }
-.chip {
-  font-family: var(--f-display); text-transform: uppercase; letter-spacing: .05em; font-size: .95rem;
-  padding: 5px 12px; text-decoration: none; display: inline-block; white-space: nowrap;
-}
-a.chip { background: var(--zwart); color: var(--wit); }
-a.chip:hover { background: var(--rood); }
-.chip.uitverkocht { background: var(--rood); color: var(--wit); transform: rotate(-3deg); }
-.chip.gratis { background: var(--geel); color: var(--zwart); }
-.chip.besloten { border: 2px solid var(--inkt); }
-.chip.voorbeeld { border: 2px dashed var(--rood); color: var(--rood); }
 @media (max-width: 560px) {
   .gig { grid-template-columns: auto 1fr; gap: 6px 16px; }
   .gig-actie { grid-column: 2; justify-self: start; }
 }
+.chip {
+  font-family: var(--f-display); text-transform: uppercase; letter-spacing: .05em; font-size: .95rem;
+  padding: 5px 12px; text-decoration: none; display: inline-block; white-space: nowrap;
+}
+a.chip { background: var(--zwart); color: var(--geel); }
+a.chip:hover { background: var(--roze); }
+.chip.uitverkocht { background: var(--roze); color: var(--geel); transform: rotate(-3deg); }
+.chip.gratis { background: var(--geel); color: var(--zwart); }
+.chip.besloten { border: 2px solid var(--inkt); }
+.chip.voorbeeld { border: 2px dashed var(--roze); color: var(--roze); }
 .meer { font-family: var(--f-type); margin: 22px 0 0; }
-.meer a { color: var(--rood); font-weight: 700; }
+.meer a { color: var(--roze-diep); font-weight: 700; }
 .leeg { font-family: var(--f-type); }
 .eerder { margin-top: 26px; border-top: 3px solid var(--inkt); padding-top: 14px; }
 .eerder summary { font-family: var(--f-display); text-transform: uppercase; font-size: 1.2rem; cursor: pointer; }
@@ -240,46 +237,47 @@ a.chip:hover { background: var(--rood); }
 .video { margin: 0; }
 .video-speler {
   position: relative; aspect-ratio: 16 / 9; max-width: 100%; background: var(--zwart);
-  border: 3px solid var(--wit); cursor: pointer; overflow: hidden; padding: 0; width: 100%;
+  border: 4px solid var(--zwart); cursor: pointer; overflow: hidden; padding: 0; width: 100%;
 }
-.video-speler img { width: 100%; height: 100%; object-fit: cover; opacity: .85; }
+.video-speler img { width: 100%; height: 100%; object-fit: cover; opacity: .9; }
 .video-speler iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 .speel {
   position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%) rotate(-3deg);
-  background: var(--rood); color: var(--wit); font-family: var(--f-display); text-transform: uppercase;
+  background: var(--roze); color: var(--geel); font-family: var(--f-display); text-transform: uppercase;
   font-size: 1.4rem; padding: 8px 18px; box-shadow: 4px 4px 0 var(--zwart); letter-spacing: .05em;
 }
-.video figcaption { font-family: var(--f-type); margin-top: 10px; color: var(--gedempt); }
+.video figcaption { font-family: var(--f-serif); margin-top: 10px; }
 .plek {
-  border: 3px dashed rgba(247, 243, 234, .35); padding: clamp(28px, 5vw, 48px);
+  border: 3px dashed var(--zwart); padding: clamp(28px, 5vw, 48px);
   display: grid; gap: 10px; text-align: center; justify-items: center;
 }
 .plek p { margin: 0; }
-.plek .label { color: var(--geel); }
-.plek a { color: var(--geel); }
+.plek .label { color: var(--roze-diep); }
+.plek a { color: var(--roze-diep); font-weight: 700; }
 
 /* ---------- Foto's ---------- */
+#fotos { background: var(--zwart); }
 .foto-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 26px; }
 .foto {
   margin: 0; background: var(--wit); padding: 10px 10px 0; color: var(--inkt);
-  box-shadow: 0 10px 24px rgba(0, 0, 0, .4); transition: transform .15s;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, .5); transition: transform .15s;
 }
 .foto:nth-child(3n+1) { transform: rotate(-1.4deg); }
 .foto:nth-child(3n+2) { transform: rotate(1deg); }
 .foto:nth-child(3n) { transform: rotate(-.5deg); }
 .foto:hover { transform: rotate(0) scale(1.02); }
 .foto button { all: unset; cursor: zoom-in; display: block; width: 100%; }
-.foto button:focus-visible { outline: 3px solid var(--rood); outline-offset: 2px; }
+.foto button:focus-visible { outline: 3px solid var(--roze); outline-offset: 2px; }
 .foto img { aspect-ratio: 4 / 3; width: 100%; object-fit: cover; }
-.foto figcaption { font-family: var(--f-type); font-size: .9rem; padding: 10px 2px 12px; }
+.foto figcaption { font-family: var(--f-serif); font-size: .95rem; padding: 10px 2px 12px; }
 
-.lichtbak { border: 0; padding: 0; background: transparent; max-width: min(1100px, 94vw); color: var(--wit); }
-.lichtbak::backdrop { background: rgba(4, 8, 20, .9); }
-.lichtbak img { max-height: 82vh; width: auto; margin: 0 auto; border: 6px solid var(--wit); }
-.lichtbak p { font-family: var(--f-type); text-align: center; }
+.lichtbak { border: 0; padding: 0; background: transparent; max-width: min(1100px, 94vw); color: var(--geel); }
+.lichtbak::backdrop { background: rgba(20, 16, 18, .92); }
+.lichtbak img { max-height: 82vh; width: auto; margin: 0 auto; border: 6px solid var(--geel); }
+.lichtbak p { font-family: var(--f-serif); text-align: center; }
 .sluit {
   position: absolute; top: 8px; right: 8px; width: 44px; height: 44px; border: 0; cursor: pointer;
-  background: var(--rood); color: var(--wit); font-size: 1.8rem; line-height: 1;
+  background: var(--roze); color: var(--geel); font-size: 1.8rem; line-height: 1;
 }
 
 /* ---------- Riders ---------- */
@@ -288,38 +286,40 @@ a.chip:hover { background: var(--rood); }
 .riders { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
 .rider {
   display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
-  background: var(--navy); border-left: 8px solid var(--rood); padding: 16px 18px;
+  background: var(--zwart); color: var(--geel); border-left: 10px solid var(--roze); padding: 16px 18px;
 }
 .rider-titel { font-family: var(--f-display); text-transform: uppercase; font-size: 1.35rem; letter-spacing: .02em; line-height: 1.2; }
-.rider-tekst { color: var(--gedempt); font-size: .95rem; }
-.rider a.chip { background: var(--wit); color: var(--zwart); }
-.rider a.chip:hover { background: var(--geel); }
-.rider .chip.op-aanvraag { font-family: var(--f-type); text-transform: none; letter-spacing: 0; color: var(--gedempt); border: 1px dashed var(--gedempt); }
+.rider-tekst { color: var(--wit); opacity: .85; font-size: .95rem; }
+.rider a.chip { background: var(--geel); color: var(--zwart); }
+.rider a.chip:hover { background: var(--roze); color: var(--geel); }
+.rider .chip.op-aanvraag { font-family: var(--f-serif); text-transform: none; letter-spacing: 0; border: 1px dashed var(--geel); }
 
 /* ---------- Contact ---------- */
-.contact { background: var(--rood); padding-block: clamp(56px, 8vw, 96px); }
+.contact { background: var(--roze); color: var(--geel); padding-block: clamp(56px, 8vw, 96px); }
+.contact .kop { background: var(--geel); }
+.contact .kop .rl { color: var(--roze); }
 .contact .sectie-intro { color: var(--wit); }
 .contact-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px 56px; align-items: center; }
 @media (max-width: 800px) { .contact-grid { grid-template-columns: 1fr; } }
-.contact-kaart { background: var(--zwart); padding: clamp(22px, 4vw, 36px); display: grid; gap: 10px; box-shadow: 8px 8px 0 var(--navy-diep); }
-.contact-kaart .label { color: var(--geel); }
+.contact-kaart { background: var(--zwart); padding: clamp(22px, 4vw, 36px); display: grid; gap: 10px; box-shadow: 8px 8px 0 var(--geel); }
+.contact-kaart .label { color: var(--roze); }
 .mail-rij { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 14px; }
-.mail { font-family: var(--f-display); font-size: clamp(1.15rem, 4.4vw, 1.7rem); letter-spacing: .01em; word-break: break-all; user-select: all; }
+.mail { font-family: var(--f-display); font-size: clamp(1.15rem, 4.4vw, 1.7rem); letter-spacing: .01em; word-break: break-all; user-select: all; color: var(--geel); }
 .kopieer {
-  font-family: var(--f-type); font-size: .9rem; cursor: pointer;
-  background: var(--wit); color: var(--zwart); border: 0; padding: 6px 12px;
+  font-family: var(--f-serif); font-weight: 700; font-size: .9rem; cursor: pointer;
+  background: var(--geel); color: var(--zwart); border: 0; padding: 6px 12px;
 }
 .sociaal { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
 .sociaal a {
   display: flex; justify-content: space-between; gap: 12px; text-decoration: none;
   font-family: var(--f-display); text-transform: uppercase; font-size: 1.25rem; letter-spacing: .03em;
-  border-bottom: 2px solid rgba(247, 243, 234, .2); padding-block: 6px;
+  border-bottom: 2px solid rgba(244, 200, 33, .3); padding-block: 6px; color: var(--geel);
 }
-.sociaal a span { font-family: var(--f-type); text-transform: none; font-size: .95rem; color: var(--gedempt); align-self: center; }
-.sociaal a:hover { color: var(--geel); }
+.sociaal a span { font-family: var(--f-serif); text-transform: none; font-size: .95rem; color: var(--wit); align-self: center; }
+.sociaal a:hover { color: var(--roze); }
 
 /* ---------- Voet ---------- */
-.voet { background: var(--zwart); padding-block: 26px; font-family: var(--f-type); font-size: .88rem; color: var(--gedempt); }
+.voet { background: var(--zwart); color: var(--geel); padding-block: 26px; font-family: var(--f-serif); font-size: .92rem; }
 .voet-in { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 24px; }
 .voet p { margin: 0; }
 

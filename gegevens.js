@@ -1,5 +1,9 @@
 /* =========================================================
    PRETTY VACANT, GEGEVENS VAN DE SITE
+
+   De site is tweetalig (NL en UK). Velden die eindigen op _en
+   zijn de Engelse versie. Laat je er een weg, dan toont de
+   Engelse site gewoon de Nederlandse tekst.
    Dit is het enige bestand dat je normaal hoeft aan te passen.
 
    Op GitHub: open dit bestand, klik op het potloodje,
@@ -23,10 +27,10 @@ const BAND = {
    en vul de bestandsnaam in, bijvoorbeeld foto: 'ronald.jpg'
    --------------------------------------------------------- */
 const LEDEN = [
-  { naam: 'Ronald', rol: 'Zang' },
-  { naam: 'Ray', rol: 'Gitaar' },
-  { naam: 'Jurrien', rol: 'Bas' },
-  { naam: 'Arthur', rol: 'Drums' },
+  { naam: 'Ronald', rol: 'Zang', rol_en: 'Vocals' },
+  { naam: 'Ray', rol: 'Gitaar', rol_en: 'Guitar' },
+  { naam: 'Jurrien', rol: 'Bas', rol_en: 'Bass' },
+  { naam: 'Arthur', rol: 'Drums', rol_en: 'Drums' },
 ];
 
 /* ---------------------------------------------------------
@@ -53,7 +57,7 @@ const TOUR = [
    Voorbeeld: https://www.youtube.com/watch?v=abc123XYZ  ->  id: 'abc123XYZ'
    --------------------------------------------------------- */
 const VIDEOS = [
-  // { id: 'abc123XYZ', titel: 'Anarchy in the U.K., live in ...' },
+  // { id: 'abc123XYZ', titel: 'Anarchy in the U.K., live in ...', titel_en: 'Anarchy in the U.K., live at ...' },
 ];
 
 /* ---------------------------------------------------------
@@ -62,10 +66,9 @@ const VIDEOS = [
    Liefst liggend en niet groter dan ca. 2000 pixels breed.
    --------------------------------------------------------- */
 const FOTOS = [
-  { bestand: 'never-mind-artwork.jpg', onderschrift: 'Never mind the Sex Pistols, here\'s Pretty Vacant' },
-  { bestand: 'union-jack-backdrop.jpg', onderschrift: 'Ons podiumdoek' },
+  { bestand: 'union-jack-backdrop.jpg', onderschrift: 'Ons podiumdoek', onderschrift_en: 'Our stage backdrop' },
   // Bandfoto erbij? Zet hem in de map "fotos" en voeg een regel toe:
-  // { bestand: 'live-enschede.jpg', onderschrift: 'Live in De Stadsgraaf, Enschede' },
+  // { bestand: 'live-enschede.jpg', onderschrift: 'Live in De Stadsgraaf, Enschede', onderschrift_en: 'Live at De Stadsgraaf, Enschede' },
 ];
 
 /* ---------------------------------------------------------
@@ -74,7 +77,10 @@ const FOTOS = [
    Leeg laten ('') betekent: "op aanvraag".
    --------------------------------------------------------- */
 const RIDERS = [
-  { titel: 'Technische rider', omschrijving: 'Backline, monitoring en kanalenlijst', bestand: '' },
-  { titel: 'Stageplot', omschrijving: 'Opstelling op het podium', bestand: '' },
-  { titel: 'Hospitality rider', omschrijving: 'Kleedkamer, catering en parkeren', bestand: '' },
+  { titel: 'Technische rider', titel_en: 'Technical rider',
+    omschrijving: 'Backline, monitoring en kanalenlijst', omschrijving_en: 'Backline, monitoring and input list', bestand: '' },
+  { titel: 'Stageplot', titel_en: 'Stage plot',
+    omschrijving: 'Opstelling op het podium', omschrijving_en: 'Stage layout', bestand: '' },
+  { titel: 'Hospitality rider', titel_en: 'Hospitality rider',
+    omschrijving: 'Kleedkamer, catering en parkeren', omschrijving_en: 'Dressing room, catering and parking', bestand: '' },
 ];
