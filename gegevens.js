@@ -45,7 +45,7 @@ const LEDEN = [
    --------------------------------------------------------- */
 const TOUR = [
   { datum: '2026-10-24', tijd: '22:30', zaal: 'De Stadsgraaf', plaats: 'Enschede', voorprogramma: 'RUK', voorprogramma_tijd: '21:00' },
-  { datum: '2026-11-27', zaal: 'Café De Flierefluiter', plaats: 'Apeldoorn' },
+  { datum: '2026-11-27', tijd: '21:00', zaal: 'Café De Flierefluiter', plaats: 'Apeldoorn' },
   { datum: '2027-01-22', zaal: 'Wielercafé', plaats: 'Doetinchem' },
   { datum: '2027-04-10', zaal: 'Leuvenheim Live', plaats: 'Leuvenheim' },
   // Nieuw optreden? Kopieer een regel hierboven en pas hem aan, bijvoorbeeld:
