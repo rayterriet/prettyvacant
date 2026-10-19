@@ -14,7 +14,7 @@
    ========================================================= */
 
 const BAND = {
-  email: 'info.prettyvacantband@gmail.com',
+  email: 'info@prettyvacant.nl',
   instagram: 'https://www.instagram.com/prettyvacant_band/',
   instagramNaam: '@prettyvacant_band',
   // Plak hier het adres van jullie Facebookpagina:
