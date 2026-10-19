@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pretty Vacant</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Pretty Vacant, Sex Pistols tribute band. Tourdata, video, foto's, riders en boekingen.">
+<meta property="og:title" content="Pretty Vacant, Sex Pistols tribute band">
+<meta property="og:description" content="50 years of Never Mind the Bollocks. Tourdata, video's en boekingen.">
+<meta property="og:image" content="https://prettyvacant.nl/img/deelbeeld.jpg">
+<meta property="og:url" content="https://prettyvacant.nl/">
+<link rel="canonical" href="https://prettyvacant.nl/">
+<meta property="og:type" content="website">
+<link rel="icon" href="img/logo-klein.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Anton&family=Archivo:wght@400;600;800&family=Bowlby+One&family=Special+Elite&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="balk">
+  <div class="balk-in">
+    <a class="merk" href="#top" aria-label="Pretty Vacant, naar boven">
+      <img src="img/logo-klein.jpg" alt="" width="40" height="40">
+      <span>Pretty Vacant</span>
+    </a>
+    <nav aria-label="Hoofdmenu">
+      <a href="#band">Band</a>
+      <a href="#tour">Tour</a>
+      <a href="#video">Video</a>
+      <a href="#fotos">Foto's</a>
+      <a href="#riders">Riders</a>
+      <a href="#contact" class="nav-boek">Boeken</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-in">
+      <p class="label label-hero">Sex Pistols tribute band</p>
+      <div class="scheur">
+        <h1 class="ransom" aria-label="Pretty Vacant"><span data-r>Pretty</span> <span data-r>Vacant</span></h1>
+      </div>
+      <p class="jubileum ransom-klein" data-r>50 years of Never Mind the Bollocks</p>
+      <div class="hero-onder">
+        <p class="intro">
+          Vijftig jaar na het album dat alles op zijn kop zette, staan vier enthousiaste muzikanten op het podium met de nummers van de Sex Pistols.
+          Hard, snel en luid, zoals het hoort.
+        </p>
+        <div class="knoppen">
+          <a class="knop knop-rood" href="#contact">Boek de band</a>
+          <a class="knop knop-wit" href="#tour">Tourdata</a>
+        </div>
+        <p class="volgende" id="volgende" hidden></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BAND -->
+  <section class="sectie band" id="band">
+    <div class="wrap">
+      <h2 class="kop ransom" data-r>De band</h2>
+      <p class="sectie-intro">Vier enthousiaste muzikanten die de nummers van de Sex Pistols weer live laten horen.</p>
+      <ul class="leden" id="leden"></ul>
+    </div>
+  </section>
+
+  <!-- TOUR -->
+  <section class="tour" id="tour">
+    <div class="wrap tour-grid">
+      <div class="papier">
+        <h2 class="kop ransom" data-r>Tour</h2>
+        <ol class="gigs" id="gigs"></ol>
+        <p class="leeg" id="gigs-leeg" hidden>Nieuwe data volgen binnenkort. More to come…</p>
+        <p class="meer">More to come… Jullie zaal erbij? <a href="#contact">Neem contact op</a>.</p>
+        <details class="eerder" id="eerder" hidden>
+          <summary>Eerder gespeeld</summary>
+          <ol class="gigs gigs-oud" id="gigs-oud"></ol>
+        </details>
+      </div>
+      <figure class="tourposter">
+        <button type="button" id="poster-knop" aria-label="Vergroot de tourposter">
+          <img src="img/tourposter.jpg" alt="Tourposter Pretty Vacant: 24-10 De Stadsgraaf Enschede, 27-11 Café De Flierefluiter Apeldoorn, 22-1 Wielercafé Doetinchem, 10-4 Leuvenheim Live" width="1128" height="928" loading="lazy">
+        </button>
+      </figure>
+    </div>
+  </section>
+
+  <!-- VIDEO -->
+  <section class="sectie" id="video">
+    <div class="wrap">
+      <h2 class="kop ransom" data-r>Video</h2>
+      <div class="video-grid" id="videos"></div>
+      <div class="plek" id="videos-leeg" hidden>
+        <p class="label">Binnenkort</p>
+        <p>De eerste livebeelden komen hier te staan.<br>Volg ons intussen op <a id="ig-link-video" href="#">Instagram</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOTO'S -->
+  <section class="sectie" id="fotos">
+    <div class="wrap">
+      <h2 class="kop ransom" data-r>Foto's</h2>
+      <div class="foto-grid" id="foto-grid"></div>
+    </div>
+  </section>
+
+  <!-- RIDERS -->
+  <section class="sectie" id="riders">
+    <div class="wrap riders-grid">
+      <div>
+        <h2 class="kop ransom" data-r>Riders</h2>
+        <p class="sectie-intro">Voor organisatoren en technici. Staat er iets niet bij of heb je een vraag over de techniek? Mail ons gerust.</p>
+      </div>
+      <ul class="riders" id="riders-lijst"></ul>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="wrap contact-grid">
+      <div>
+        <h2 class="kop ransom" data-r>Boeken &amp; contact</h2>
+        <p class="sectie-intro">Café, club, festival of feest: we komen graag langs. Stuur een mail met datum, plaats en een idee van de zaal, dan reageren we snel.</p>
+      </div>
+      <div class="contact-kaart">
+        <p class="label">Mail</p>
+        <div class="mail-rij">
+          <a class="mail" id="mail" href="#"></a>
+          <button class="kopieer" id="kopieer" type="button">Kopieer</button>
+        </div>
+        <p class="label">Volg ons</p>
+        <ul class="sociaal">
+          <li><a id="ig" href="#" target="_blank" rel="noopener">Instagram <span id="ig-naam"></span></a></li>
+          <li><a id="fb" href="#" target="_blank" rel="noopener">Facebook <span>Pretty Vacant</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="voet">
+  <div class="wrap voet-in">
+    <p>Pretty Vacant, Sex Pistols tribute band</p>
+    <p>Een tribute, geen officiële Sex Pistols-band.</p>
+  </div>
+</footer>
+
+<dialog class="lichtbak" id="lichtbak">
+  <button class="sluit" id="sluit" type="button" aria-label="Sluiten">×</button>
+  <img id="lichtbak-img" alt="">
+  <p id="lichtbak-tekst"></p>
+</dialog>
+
+<script src="gegevens.js"></script>
+<script src="site.js"></script>
+</body>
+</html>
