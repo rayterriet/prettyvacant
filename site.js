@@ -30,6 +30,7 @@
       'tour.poster': 'Vergroot de tourposter',
       'tour.postertitel': 'Tourposter',
       'uur': ' uur',
+      'voorprogramma': 'Voorprogramma',
       'chip.voorbeeld': 'Voorbeeld', 'chip.uitverkocht': 'Uitverkocht', 'chip.gratis': 'Gratis', 'chip.besloten': 'Besloten', 'chip.tickets': 'Tickets',
       'video.binnenkort': 'Binnenkort',
       'video.leeg': 'De eerste livebeelden komen hier te staan.<br>Volg ons intussen op <a class="ig-link" href="#">Instagram</a>.',
@@ -66,6 +67,7 @@
       'tour.poster': 'Enlarge the tour poster',
       'tour.postertitel': 'Tour poster',
       'uur': '',
+      'voorprogramma': 'Support',
       'chip.voorbeeld': 'Example', 'chip.uitverkocht': 'Sold out', 'chip.gratis': 'Free entry', 'chip.besloten': 'Private', 'chip.tickets': 'Tickets',
       'video.binnenkort': 'Coming soon',
       'video.leeg': 'Our first live footage will appear here.<br>In the meantime, follow us on <a class="ig-link" href="#">Instagram</a>.',
@@ -195,6 +197,10 @@
     if (g.plaats) meta += ', ' + V(g, 'plaats');
     if (g.tijd) meta += ', ' + g.tijd + T('uur');
     wat.appendChild(el('div', 'gig-meta', meta));
+    if (g.voorprogramma) {
+      var vp = T('voorprogramma') + ': ' + V(g, 'voorprogramma') + (g.voorprogramma_tijd ? ', ' + g.voorprogramma_tijd + T('uur') : '');
+      wat.appendChild(el('div', 'gig-meta gig-support', vp));
+    }
     li.appendChild(wat);
     if (metActie) {
       var actie = el('div', 'gig-actie');

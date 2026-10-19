@@ -326,3 +326,4 @@ a.chip:hover { background: var(--roze); }
 @media (prefers-reduced-motion: reduce) {
   .knop, .foto { transition: none; }
 }
+.gig-support { font-style: italic; }
