@@ -40,6 +40,7 @@ const LEDEN = [
    status (mag je weglaten): 'uitverkocht', 'gratis' of 'besloten'
    tickets (mag je weglaten): link naar de kaartverkoop
    voorprogramma en voorprogramma_tijd (mag je weglaten): naam en starttijd van de support-act
+   prijs (mag je weglaten): toegangsprijs in euro's, bijvoorbeeld prijs: 10
    De tourposter naast de lijst is img/tourposter.jpg. Nieuwe poster?
    Upload hem met precies die naam, dan vervangt hij de oude.
    --------------------------------------------------------- */

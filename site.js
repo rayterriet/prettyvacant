@@ -352,10 +352,11 @@
   (function () {
     if (!komend.length) return;
     var events = komend.filter(function (g) { return !g.voorbeeld; }).map(function (g) {
-      return {
+      var ev = {
         '@type': 'MusicEvent',
         'name': 'Pretty Vacant, Sex Pistols tribute' + (g.zaal ? ' in ' + g.zaal : ''),
         'startDate': g.datum + (g.tijd ? 'T' + g.tijd : ''),
+        'endDate': g.einddatum || g.datum,
         'eventStatus': 'https://schema.org/EventScheduled',
         'eventAttendanceMode': 'https://schema.org/OfflineEventAttendanceMode',
         'location': {
@@ -369,6 +370,17 @@
         'organizer': { '@type': 'Organization', 'name': g.zaal || 'Pretty Vacant', 'url': g.tickets || 'https://prettyvacant.nl/' },
         'url': g.tickets || 'https://prettyvacant.nl/#tour'
       };
+      if (g.tickets || g.status === 'gratis' || g.prijs != null) {
+        ev.offers = {
+          '@type': 'Offer',
+          'url': g.tickets || 'https://prettyvacant.nl/#tour',
+          'price': g.status === 'gratis' ? 0 : (g.prijs != null ? g.prijs : undefined),
+          'priceCurrency': 'EUR',
+          'availability': g.status === 'uitverkocht' ? 'https://schema.org/SoldOut' : 'https://schema.org/InStock'
+        };
+        if (ev.offers.price === undefined) delete ev.offers.price;
+      }
+      return ev;
     });
     var sc = document.createElement('script');
     sc.type = 'application/ld+json';
