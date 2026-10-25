@@ -240,7 +240,7 @@ a.chip:hover { background: var(--roze); }
   border: 4px solid var(--zwart); cursor: pointer; overflow: hidden; padding: 0; width: 100%;
 }
 .video-speler img { width: 100%; height: 100%; object-fit: cover; opacity: .9; }
-.video-speler iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.video-speler iframe, .video-speler video { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; background: #000; }
 .speel {
   position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%) rotate(-3deg);
   background: var(--roze); color: var(--geel); font-family: var(--f-display); text-transform: uppercase;
@@ -251,6 +251,7 @@ a.chip:hover { background: var(--roze); }
   border: 3px dashed var(--zwart); padding: clamp(28px, 5vw, 48px);
   display: grid; gap: 10px; text-align: center; justify-items: center;
 }
+.plek[hidden] { display: none; }
 .plek p { margin: 0; }
 .plek .label { color: var(--roze-diep); }
 .plek a { color: var(--roze-diep); font-weight: 700; }

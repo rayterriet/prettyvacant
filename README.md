@@ -8,7 +8,7 @@ Open dat bestand op GitHub, klik op het potloodje, pas aan en klik op "Commit ch
 
 - Foto's: zet ze in de map `fotos/` en noem ze in `gegevens.js`.
 - Riders: zet de PDF's in de map `riders/` en vul de bestandsnaam in bij `RIDERS`.
-- Video's: vul het YouTube-id in bij `VIDEOS`.
+- Video's: vul het YouTube-id in bij `VIDEOS`, of zet een eigen .mp4 met plaatje in de map `video/` en noem die bij `VIDEOS`.
 
 ## Bestanden
 - `index.html` de pagina

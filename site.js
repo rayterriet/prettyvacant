@@ -235,24 +235,37 @@
   function video() {
     $('videos').replaceChildren();
     (typeof VIDEOS !== 'undefined' ? VIDEOS : []).forEach(function (v) {
-      if (!v || !v.id) return;
+      if (!v || (!v.id && !v.bestand)) return;
       var titel = V(v, 'titel') || '';
       var fig = el('figure', 'video');
       var knop = el('button', 'video-speler');
       knop.type = 'button';
       knop.setAttribute('aria-label', T('video.speel') + titel);
       var img = el('img');
-      img.src = 'https://i.ytimg.com/vi/' + encodeURIComponent(v.id) + '/hqdefault.jpg';
+      img.src = v.bestand
+        ? (v.poster ? 'video/' + v.poster : '')
+        : 'https://i.ytimg.com/vi/' + encodeURIComponent(v.id) + '/hqdefault.jpg';
       img.alt = ''; img.loading = 'lazy';
-      knop.appendChild(img);
+      if (img.src) knop.appendChild(img);
       knop.appendChild(el('span', 'speel', 'Play'));
       knop.addEventListener('click', function () {
-        var f = document.createElement('iframe');
-        f.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(v.id) + '?autoplay=1&rel=0';
-        f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
-        f.allowFullscreen = true;
-        f.title = titel || 'Video';
+        var f;
+        if (v.bestand) {
+          // Eigen videobestand uit de map "video"
+          f = document.createElement('video');
+          f.src = 'video/' + v.bestand;
+          if (v.poster) f.poster = 'video/' + v.poster;
+          f.controls = true; f.autoplay = true; f.playsInline = true;
+          f.setAttribute('aria-label', titel || 'Video');
+        } else {
+          f = document.createElement('iframe');
+          f.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(v.id) + '?autoplay=1&rel=0';
+          f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+          f.allowFullscreen = true;
+          f.title = titel || 'Video';
+        }
         knop.replaceChildren(f);
+        if (f.play) { var p = f.play(); if (p && p.catch) p.catch(function () {}); }
       }, { once: true });
       fig.appendChild(knop);
       if (titel) fig.appendChild(el('figcaption', null, titel));
