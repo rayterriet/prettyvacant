@@ -50,6 +50,7 @@ const TOUR = [
   { datum: '2027-01-22', zaal: 'Wielercafé', plaats: 'Doetinchem', status: 'gratis' },
   { datum: '2027-02-19', zaal: 'Jolly Jug', plaats: 'Enschede', status: 'gratis' },
   { datum: '2027-04-10', zaal: 'Leuvenheim Live', plaats: 'Leuvenheim', status: 'gratis' },
+  { datum: '2027-07-03', tijd: '21:00', zaal: 'Stage Music Cafe', plaats: 'Eindhoven', status: 'gratis' },
   // Nieuw optreden? Kopieer een regel hierboven en pas hem aan, bijvoorbeeld:
   // { datum: '2027-05-15', tijd: '21:30', zaal: 'Naam zaal', plaats: 'Stad', tickets: 'https://...' },
 ];
