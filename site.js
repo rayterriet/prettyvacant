@@ -1,5 +1,5 @@
 /* Pretty Vacant, site-logica. Normaal hoef je hier niets aan te veranderen:
-   alle inhoud staat in gegevens.js. Vaste teksten van de site (NL en UK)
+   alle inhoud staat in gegevens.js. Vaste teksten van de site (NL, UK en DE)
    staan hieronder in TEKSTEN. */
 (function () {
   'use strict';
@@ -86,18 +86,61 @@
       'sluit': 'Close',
       'maanden': ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
       'dagen': ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+    },
+    de: {
+      'top': 'Pretty Vacant, nach oben',
+      'menu': 'Hauptmenü',
+      'nav.fotos': 'Fotos',
+      'nav.boek': 'Buchen',
+      'hero.intro': 'Fünfzig Jahre nach dem Album, das alles auf den Kopf stellte, stehen vier begeisterte Musiker mit den Songs der Sex Pistols auf der Bühne. Hart, schnell und laut, so wie es sich gehört.',
+      'hero.boek': 'Band buchen',
+      'hero.tour': 'Tourdaten',
+      'volgende': 'Nächster Gig',
+      'band.kop': 'Die Band',
+      'band.intro': 'Vier begeisterte Musiker, die die Songs der Sex Pistols wieder live auf die Bühne bringen.',
+      'tour.leeg': 'Neue Termine folgen bald. More to come…',
+      'tour.meer': 'More to come… Wollt ihr uns in eurem Laden? <a href="#contact">Meldet euch</a>.',
+      'tour.eerder': 'Bisherige Konzerte',
+      'tour.poster': 'Tourposter vergrößern',
+      'tour.postertitel': 'Tourposter',
+      'uur': ' Uhr',
+      'voorprogramma': 'Vorband',
+      'chip.voorbeeld': 'Beispiel', 'chip.uitverkocht': 'Ausverkauft', 'chip.gratis': 'Eintritt frei', 'chip.besloten': 'Geschlossene Gesellschaft', 'chip.tickets': 'Tickets',
+      'video.binnenkort': 'Demnächst',
+      'video.leeg': 'Hier erscheinen bald die ersten Livebilder.<br>Folgt uns bis dahin auf <a class="ig-link" href="#">Instagram</a>.',
+      'video.speel': 'Video abspielen: ',
+      'fotos.kop': 'Fotos',
+      'fotos.vergroot': 'Vergrößern: ',
+      'riders.intro': 'Für Veranstalter und Techniker. Fehlt etwas oder gibt es Fragen zur Technik? Schreibt uns einfach.',
+      'riders.download': 'PDF herunterladen',
+      'riders.aanvraag': 'Auf Anfrage',
+      'contact.kop': 'Booking & Kontakt',
+      'contact.intro': 'Kneipe, Club, Festival oder Party: wir kommen gern vorbei. Schickt uns eine Mail mit Datum, Ort und ein paar Infos zum Laden, dann melden wir uns schnell.',
+      'contact.mail': 'Mail',
+      'contact.volg': 'Folgt uns',
+      'kopieer': 'Kopieren', 'gekopieerd': 'Kopiert', 'geselecteerd': 'Markiert',
+      'voet': 'Eine Tribute-Band, keine offizielle Sex-Pistols-Band.',
+      'sluit': 'Schließen',
+      'maanden': ['Jan.', 'Feb.', 'März', 'Apr.', 'Mai', 'Juni', 'Juli', 'Aug.', 'Sep.', 'Okt.', 'Nov.', 'Dez.'],
+      'dagen': ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa']
     }
   };
 
   function startTaal() {
-    try { var t = localStorage.getItem('pv-taal'); if (t === 'nl' || t === 'en') return t; } catch (e) {}
+    try { var t = localStorage.getItem('pv-taal'); if (t === 'nl' || t === 'en' || t === 'de') return t; } catch (e) {}
     var talen = navigator.languages || [navigator.language || 'nl'];
-    return /^nl\b/i.test(talen[0] || '') ? 'nl' : 'en';
+    var eerste = talen[0] || '';
+    return /^nl\b/i.test(eerste) ? 'nl' : /^de\b/i.test(eerste) ? 'de' : 'en';
   }
   var taal = startTaal();
   function T(k) { return TEKSTEN[taal][k] != null ? TEKSTEN[taal][k] : TEKSTEN.nl[k]; }
-  // Kies het Engelse veld (bv. rol_en) als dat bestaat en de site op UK staat.
-  function V(obj, veld) { return (taal === 'en' && obj[veld + '_en']) ? obj[veld + '_en'] : obj[veld]; }
+  // Kies het Engelse veld (bv. rol_en) of Duitse veld (bv. rol_de) als dat bestaat.
+  // Staat de site op Duits en is er geen _de-veld, dan valt hij terug op Engels.
+  function V(obj, veld) {
+    if (taal === 'de' && obj[veld + '_de']) return obj[veld + '_de'];
+    if ((taal === 'en' || taal === 'de') && obj[veld + '_en']) return obj[veld + '_en'];
+    return obj[veld];
+  }
 
   /* ---------- Knipletters ---------- */
   var KLEUREN = ['zw', 'wi', 'ro', 'wi', 'zw', 'ge', 'ro', 'zw', 'wi', 'kaal'];
@@ -142,7 +185,7 @@
 
   /* ---------- Vaste teksten ---------- */
   function vasteTeksten() {
-    document.documentElement.lang = taal === 'en' ? 'en-GB' : 'nl';
+    document.documentElement.lang = taal === 'en' ? 'en-GB' : taal === 'de' ? 'de' : 'nl';
     document.querySelectorAll('[data-t]:not([data-r])').forEach(function (n) { n.textContent = T(n.dataset.t); });
     document.querySelectorAll('[data-th]').forEach(function (n) { n.innerHTML = T(n.dataset.th); });
     document.querySelectorAll('[data-ta]').forEach(function (n) {

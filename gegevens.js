@@ -1,9 +1,10 @@
 /* =========================================================
    PRETTY VACANT, GEGEVENS VAN DE SITE
 
-   De site is tweetalig (NL en UK). Velden die eindigen op _en
-   zijn de Engelse versie. Laat je er een weg, dan toont de
-   Engelse site gewoon de Nederlandse tekst.
+   De site is drietalig (NL, UK en DE). Velden die eindigen op _en
+   zijn de Engelse versie, velden op _de de Duitse. Laat je een
+   Duits veld weg, dan toont de Duitse site de Engelse tekst.
+   Laat je een Engels veld weg, dan wordt het de Nederlandse tekst.
    Dit is het enige bestand dat je normaal hoeft aan te passen.
 
    Op GitHub: open dit bestand, klik op het potloodje,
@@ -26,10 +27,10 @@ const BAND = {
    en vul de bestandsnaam in, bijvoorbeeld foto: 'ronald.jpg'
    --------------------------------------------------------- */
 const LEDEN = [
-  { naam: 'Ronald', rol: 'Zang', rol_en: 'Vocals' },
-  { naam: 'Ray', rol: 'Gitaar', rol_en: 'Guitar' },
-  { naam: 'Jurrien', rol: 'Bas', rol_en: 'Bass' },
-  { naam: 'Arthur', rol: 'Drums', rol_en: 'Drums' },
+  { naam: 'Ronald', rol: 'Zang', rol_en: 'Vocals', rol_de: 'Gesang' },
+  { naam: 'Ray', rol: 'Gitaar', rol_en: 'Guitar', rol_de: 'Gitarre' },
+  { naam: 'Jurrien', rol: 'Bas', rol_en: 'Bass', rol_de: 'Bass' },
+  { naam: 'Arthur', rol: 'Drums', rol_en: 'Drums', rol_de: 'Schlagzeug' },
 ];
 
 /* ---------------------------------------------------------
@@ -68,6 +69,7 @@ const VIDEOS = [
     poster: 'aftermovie-enschede-2026.jpg',
     titel: 'Aftermovie, onze allereerste try-out in De Stadsgraaf, Enschede (24-10-2026)',
     titel_en: 'Aftermovie, our very first try-out at De Stadsgraaf, Enschede (24-10-2026)',
+    titel_de: 'Aftermovie, unser allererster Try-out im De Stadsgraaf, Enschede (24.10.2026)',
   },
   // { id: 'abc123XYZ', titel: 'Anarchy in the U.K., live in ...', titel_en: 'Anarchy in the U.K., live at ...' },
 ];
@@ -78,7 +80,7 @@ const VIDEOS = [
    Liefst liggend en niet groter dan ca. 2000 pixels breed.
    --------------------------------------------------------- */
 const FOTOS = [
-  { bestand: 'union-jack-backdrop.jpg', onderschrift: 'Ons podiumdoek', onderschrift_en: 'Our stage backdrop' },
+  { bestand: 'union-jack-backdrop.jpg', onderschrift: 'Ons podiumdoek', onderschrift_en: 'Our stage backdrop', onderschrift_de: 'Unser Bühnenbanner' },
   // Bandfoto erbij? Zet hem in de map "fotos" en voeg een regel toe:
   // { bestand: 'live-enschede.jpg', onderschrift: 'Live in De Stadsgraaf, Enschede', onderschrift_en: 'Live at De Stadsgraaf, Enschede' },
 ];
@@ -89,10 +91,10 @@ const FOTOS = [
    Leeg laten ('') betekent: "op aanvraag".
    --------------------------------------------------------- */
 const RIDERS = [
-  { titel: 'Technische rider', titel_en: 'Technical rider',
-    omschrijving: 'Bezetting, inputlijst, monitors, backline en stroom', omschrijving_en: 'Line-up, input list, monitors, backline and power', bestand: 'pretty-vacant-rider-2026.pdf' },
-  { titel: 'Stageplot', titel_en: 'Stage plot',
-    omschrijving: 'Opstelling op het podium (pagina 3 van de rider)', omschrijving_en: 'Stage layout (page 3 of the rider)', bestand: 'pretty-vacant-rider-2026.pdf' },
-  { titel: 'Hospitality rider', titel_en: 'Hospitality rider',
-    omschrijving: 'Kleedkamer, catering en parkeren', omschrijving_en: 'Dressing room, catering and parking', bestand: '' },
+  { titel: 'Technische rider', titel_en: 'Technical rider', titel_de: 'Technischer Rider',
+    omschrijving: 'Bezetting, inputlijst, monitors, backline en stroom', omschrijving_en: 'Line-up, input list, monitors, backline and power', omschrijving_de: 'Besetzung, Inputliste, Monitore, Backline und Strom', bestand: 'pretty-vacant-rider-2026.pdf' },
+  { titel: 'Stageplot', titel_en: 'Stage plot', titel_de: 'Stageplot',
+    omschrijving: 'Opstelling op het podium (pagina 3 van de rider)', omschrijving_en: 'Stage layout (page 3 of the rider)', omschrijving_de: 'Bühnenaufbau (Seite 3 des Riders)', bestand: 'pretty-vacant-rider-2026.pdf' },
+  { titel: 'Hospitality rider', titel_en: 'Hospitality rider', titel_de: 'Hospitality Rider',
+    omschrijving: 'Kleedkamer, catering en parkeren', omschrijving_en: 'Dressing room, catering and parking', omschrijving_de: 'Backstage, Catering und Parken', bestand: '' },
 ];
