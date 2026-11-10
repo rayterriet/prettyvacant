@@ -44,6 +44,7 @@
       'contact.intro': 'Café, club, festival of feest: we komen graag langs. Stuur een mail met datum, plaats en een idee van de zaal, dan reageren we snel.',
       'contact.mail': 'Mail',
       'contact.volg': 'Volg ons',
+      'contact.persoon': 'Contactpersoon',
       'kopieer': 'Kopieer', 'gekopieerd': 'Gekopieerd', 'geselecteerd': 'Geselecteerd',
       'voet': 'Een tribute, geen officiële Sex Pistols-band.',
       'sluit': 'Sluiten',
@@ -81,6 +82,7 @@
       'contact.intro': "Pub, club, festival or party: we'd love to come and play. Send us an email with the date, the place and a bit about the venue, and we'll get back to you quickly.",
       'contact.mail': 'Email',
       'contact.volg': 'Follow us',
+      'contact.persoon': 'Contact person',
       'kopieer': 'Copy', 'gekopieerd': 'Copied', 'geselecteerd': 'Selected',
       'voet': 'A tribute, not an official Sex Pistols band.',
       'sluit': 'Close',
@@ -118,6 +120,7 @@
       'contact.intro': 'Kneipe, Club, Festival oder Party: wir kommen gern vorbei. Schickt uns eine Mail mit Datum, Ort und ein paar Infos zum Laden, dann melden wir uns schnell.',
       'contact.mail': 'Mail',
       'contact.volg': 'Folgt uns',
+      'contact.persoon': 'Ansprechpartner',
       'kopieer': 'Kopieren', 'gekopieerd': 'Kopiert', 'geselecteerd': 'Markiert',
       'voet': 'Eine Tribute-Band, keine offizielle Sex-Pistols-Band.',
       'sluit': 'Schließen',
@@ -377,6 +380,16 @@
     $('ig').href = BAND.instagram;
     $('ig-naam').textContent = BAND.instagramNaam || '';
     $('fb').href = BAND.facebook;
+    if (BAND.youtube) { $('yt').href = BAND.youtube; $('yt-naam').textContent = BAND.youtubeNaam || ''; }
+    else $('yt').parentNode.hidden = true;
+  }
+  // Contactpersoon: NL toont 06-nummer, UK en DE het internationale nummer.
+  function contactPersoon() {
+    if (typeof BAND === 'undefined' || !BAND.contactTel) { $('persoon-naam').parentNode.hidden = true; return; }
+    $('persoon-naam').textContent = BAND.contactNaam || '';
+    $('tel').href = 'tel:' + BAND.contactTel;
+    $('tel').textContent = taal === 'nl' ? (BAND.contactTelTekst || BAND.contactTel)
+      : BAND.contactTel.replace(/^\+31(6)(\d{2})(\d{2})(\d{2})(\d{2})$/, '+31 $1 $2 $3 $4 $5');
   }
   $('kopieer').addEventListener('click', function () {
     var knop = this;
@@ -433,7 +446,7 @@
 
   /* ---------- Alles tekenen, en opnieuw bij taalwissel ---------- */
   function teken() {
-    vasteTeksten(); knipKoppen(); band(); tour(); video(); fotos(); riders();
+    vasteTeksten(); contactPersoon(); knipKoppen(); band(); tour(); video(); fotos(); riders();
   }
   document.querySelectorAll('[data-lang]').forEach(function (b) {
     b.addEventListener('click', function () {

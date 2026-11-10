@@ -19,6 +19,12 @@ const BAND = {
   instagram: 'https://www.instagram.com/prettyvacant_band/',
   instagramNaam: '@prettyvacant_band',
   facebook: 'https://www.facebook.com/profile.php?id=61591733096831',
+  youtube: 'https://www.youtube.com/@prettyvacantsexpistolstribute',
+  youtubeNaam: '@prettyvacantsexpistolstribute',
+  // Contactpersoon voor boekingen (telefoon met +31, zonder spaties):
+  contactNaam: 'Jurrien Schadron',
+  contactTel: '+31648600032',
+  contactTelTekst: '06 48 60 00 32',
 };
 
 /* ---------------------------------------------------------
