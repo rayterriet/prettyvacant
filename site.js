@@ -18,7 +18,8 @@
       'muziek.kop': 'Muziek',
       'muziek.intro': "Luister naar onze demo's, live opgenomen tijdens onze repetities. Druk op de knop bij een nummer en zet het volume open.",
       'muziek.live': 'Live spelen we het complete album, aangevuld met unieke bootlegs en covers die de Sex Pistols zelf ook speelden.',
-      'muziek.demo': 'Live', 'muziek.legenda': '= live opgenomen demo, hier te beluisteren',
+      'muziek.demo': 'Live', 'muziek.fotoalt': 'Onze handgeschreven setlijst, vastgeplakt op het podium naast een gitaarversterker en een effectpedaal',
+      'muziek.legenda': '= live opgenomen demo, druk op de sticker om te luisteren',
       'muziek.speel': 'Speel demo: ', 'muziek.pauze': 'Pauzeer demo: ',
       'top': 'Pretty Vacant, naar boven',
       'menu': 'Hoofdmenu',
@@ -62,7 +63,8 @@
       'muziek.kop': 'Music',
       'muziek.intro': 'Have a listen to our demos, recorded live at our rehearsals. Hit the button next to a song and turn it up.',
       'muziek.live': 'Live, we play the complete album, plus rare bootleg tracks and the covers the Sex Pistols played themselves.',
-      'muziek.demo': 'Live', 'muziek.legenda': '= demo recorded live, listen here',
+      'muziek.demo': 'Live', 'muziek.fotoalt': 'Our handwritten setlist, taped to the stage next to a guitar amp and an effects pedal',
+      'muziek.legenda': '= demo recorded live, hit the sticker to listen',
       'muziek.speel': 'Play demo: ', 'muziek.pauze': 'Pause demo: ',
       'top': 'Pretty Vacant, back to top',
       'menu': 'Main menu',
@@ -106,7 +108,8 @@
       'muziek.kop': 'Musik',
       'muziek.intro': 'Hört in unsere Demos rein, live aufgenommen bei unseren Proben. Drückt auf den Knopf neben einem Song und dreht auf.',
       'muziek.live': 'Live spielen wir das komplette Album, ergänzt um seltene Bootleg-Songs und die Coverversionen, die die Sex Pistols selbst gespielt haben.',
-      'muziek.demo': 'Live', 'muziek.legenda': '= live aufgenommenes Demo, hier anhören',
+      'muziek.demo': 'Live', 'muziek.fotoalt': 'Unsere handgeschriebene Setlist, auf die Bühne geklebt neben einem Gitarrenverstärker und einem Effektpedal',
+      'muziek.legenda': '= live aufgenommenes Demo, auf den Sticker drücken zum Anhören',
       'muziek.speel': 'Demo abspielen: ', 'muziek.pauze': 'Demo pausieren: ',
       'top': 'Pretty Vacant, nach oben',
       'menu': 'Hauptmenü',
@@ -432,31 +435,30 @@
     knop.setAttribute('aria-label', T(speelt ? 'muziek.pauze' : 'muziek.demo-knop') + knop.dataset.titel);
   }
   function tekenTracks() {
-    var lijst = $('tracks'); if (!lijst) return;
+    var lijst = $('tracks'), beeld = $('setlist-beeld'); if (!lijst || !beeld) return;
     lijst.textContent = '';
+    beeld.querySelectorAll('.sticker').forEach(function (n) { n.remove(); });
     (typeof MUZIEK !== 'undefined' ? MUZIEK : []).forEach(function (n, i) {
-      var li = el('li', 'track' + (n.demo ? ' heeft-demo' : '') + (n.extra ? ' extra' : '') + (n.extra && !(MUZIEK[i - 1] || {}).extra ? ' eerste-extra' : ''));
-      var schuin = [-1.6, 1.1, -0.4, 1.8, -1.2, 0.6, -2, 0.9, -0.7, 1.4, -1.1, 0.3, 1.5, -0.8][i % 14];
-      li.style.setProperty('--schuin', schuin + 'deg');
-      li.style.setProperty('--inspring', ((i * 37) % 5) * 6 + 'px');
-      li.appendChild(el('span', 'track-titel', n.titel));
-      if (n.demo) {
-        var knop = el('button', 'demo-knop');
-        knop.type = 'button'; knop.dataset.titel = n.titel; knop.dataset.src = n.demo;
-        knop.innerHTML = '<span class="sticker-tekst">' + T('muziek.demo') + '</span><svg viewBox="0 0 24 24" aria-hidden="true"><path class="i-speel" d="M7 4l13 8-13 8z"/><path class="i-pauze" d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg>';
-        var balk = el('span', 'voortgang'); balk.appendChild(el('span', 'voortgang-vul'));
-        li.appendChild(knop); li.appendChild(balk);
-        knopStand(knop, actief === knop.dataset.src && !speler.paused);
-        knop.addEventListener('click', function () {
-          if (actief === n.demo) { if (speler.paused) speler.play(); else speler.pause(); return; }
-          actief = n.demo; speler.src = n.demo; speler.play();
-        });
-      }
-      lijst.appendChild(li);
+      lijst.appendChild(el('li', null, n.titel));
+      if (!n.demo || !n.plek) return;
+      var st = el('div', 'sticker');
+      st.style.left = n.plek[0] + '%'; st.style.top = n.plek[1] + '%';
+      st.style.setProperty('--draai', [-10, 7, -5, 9][i % 4] + 'deg');
+      var knop = el('button', 'demo-knop');
+      knop.type = 'button'; knop.dataset.titel = n.titel; knop.dataset.src = n.demo;
+      knop.innerHTML = '<span class="sticker-tekst">' + T('muziek.demo') + '</span><svg viewBox="0 0 24 24" aria-hidden="true"><path class="i-speel" d="M7 4l13 8-13 8z"/><path class="i-pauze" d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg>';
+      var balk = el('span', 'voortgang'); balk.appendChild(el('span', 'voortgang-vul'));
+      st.appendChild(knop); st.appendChild(balk);
+      knopStand(knop, actief === n.demo && !speler.paused);
+      knop.addEventListener('click', function () {
+        if (actief === n.demo) { if (speler.paused) speler.play(); else speler.pause(); return; }
+        actief = n.demo; speler.src = n.demo; speler.play();
+      });
+      beeld.appendChild(st);
     });
   }
   function werkKnoppenBij() {
-    document.querySelectorAll('#tracks .demo-knop').forEach(function (k) {
+    document.querySelectorAll('#setlist-beeld .demo-knop').forEach(function (k) {
       var dit = k.dataset.src === actief;
       knopStand(k, dit && !speler.paused);
       var vul = k.parentNode.querySelector('.voortgang-vul');
@@ -465,7 +467,7 @@
   }
   ['play', 'pause', 'ended'].forEach(function (ev) { speler.addEventListener(ev, werkKnoppenBij); });
   speler.addEventListener('timeupdate', function () {
-    var k = document.querySelector('#tracks .demo-knop[data-src="' + actief + '"]');
+    var k = document.querySelector('#setlist-beeld .demo-knop[data-src="' + actief + '"]');
     if (k && speler.duration) k.parentNode.querySelector('.voortgang-vul').style.width = (speler.currentTime / speler.duration * 100) + '%';
   });
   speler.addEventListener('ended', function () { speler.currentTime = 0; });

@@ -70,26 +70,29 @@ const TOUR = [
    Eigen videobestand: zet de .mp4 (liefst kleiner dan 50 MB) en een
    plaatje in de map "video" en vul bestand en poster in.
    --------------------------------------------------------- */
-// Muzieksectie: onze setlijst, de nummers van Never Mind the Bollocks (1977) plus extra's. Bij een nummer met
-// een demo staat 'demo' (het mp3-bestand in de map muziek/), dan krijgt het een speelknop.
+// Muzieksectie: onze setlijst, in de volgorde van de foto img/setlist.jpg.
+// Bij een nummer met een live demo staat 'demo' (mp3 in de map muziek/) en 'plek':
+// waar de speelknop op de foto komt, in procenten van links en van boven.
 const MUZIEK = [
+  { titel: 'Pretty Vacant', demo: 'muziek/pretty-vacant-demo.mp3', plek: [18.5, 26] },
   { titel: 'Holidays in the Sun' },
-  { titel: 'Bodies', demo: 'muziek/bodies-demo.mp3' },
   { titel: 'No Feelings' },
-  { titel: 'Liar' },
-  { titel: 'God Save the Queen', demo: 'muziek/god-save-the-queen-demo.mp3' },
+  { titel: 'Submission' },
   { titel: 'Problems' },
   { titel: 'Seventeen' },
-  { titel: 'Anarchy in the U.K.', demo: 'muziek/anarchy-in-the-uk-demo.mp3' },
-  { titel: 'Submission' },
-  { titel: 'Pretty Vacant', demo: 'muziek/pretty-vacant-demo.mp3' },
+  { titel: 'Did You No Wrong' },
+  { titel: 'Liar' },
+  { titel: 'Bodies', demo: 'muziek/bodies-demo.mp3', plek: [15.6, 49.6] },
+  { titel: "(I'm Not Your) Stepping Stone" },
+  { titel: 'God Save the Queen', demo: 'muziek/god-save-the-queen-demo.mp3', plek: [19.6, 55.2] },
+  { titel: 'Satellite' },
   { titel: 'New York' },
+  { titel: 'Substitute' },
   { titel: 'E.M.I.' },
-  // Extra nummers op onze setlijst (extra: true), met een streep erboven op de setlijst.
-  { titel: 'Substitute', extra: true },
-  { titel: 'Silly Thing', extra: true },
-  { titel: 'No One Is Innocent', extra: true },
-  { titel: 'I Wanna Be Me', extra: true },
+  { titel: 'Anarchy in the U.K.', demo: 'muziek/anarchy-in-the-uk-demo.mp3', plek: [18.8, 69] },
+  { titel: 'Silly Thing' },
+  { titel: 'No One Is Innocent' },
+  { titel: 'I Wanna Be Me' },
 ];
 
 const VIDEOS = [

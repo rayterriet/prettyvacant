@@ -336,9 +336,11 @@ a.chip:hover { background: var(--roze); }
 
 /* ---------- Muziek: tracklist met demo's ---------- */
 .muziek { border-top: 6px solid var(--zwart); }
-.muziek-grid { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.3fr); gap: clamp(28px, 5vw, 64px); align-items: start; }
+.muziek-grid { display: grid; grid-template-columns: 1fr; gap: clamp(28px, 5vw, 64px); align-items: start; }
 @media (max-width: 880px) { .muziek-grid { grid-template-columns: 1fr; } }
-.muziek-tekst { display: grid; gap: 22px; align-content: start; }
+.muziek-tekst { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 22px 48px; align-items: end; }
+.muziek-tekst .kop { grid-column: 1 / -1; justify-self: start; }
+@media (max-width: 800px) { .muziek-tekst { grid-template-columns: 1fr; } }
 .live-noot {
   margin: 8px 0 0; max-width: 30rem;
   background: var(--zwart); color: var(--geel);
@@ -346,95 +348,35 @@ a.chip:hover { background: var(--roze); }
   font-size: clamp(1.15rem, 2.2vw, 1.45rem); line-height: 1.25;
   padding: 16px 20px; transform: rotate(-1.2deg); box-shadow: 6px 6px 0 var(--roze);
 }
-/* Setlist: gekreukt A4'tje met stift, vastgeplakt met gaffatape */
-.setlist {
-  position: relative; padding: clamp(36px, 5vw, 52px) clamp(22px, 4vw, 44px) 30px;
-  background:
-    linear-gradient(115deg, rgba(0,0,0,.05) 0 18%, transparent 18.3% 41%, rgba(0,0,0,.045) 41.3% 63%, transparent 63.3%),
-    linear-gradient(28deg, transparent 0 52%, rgba(0,0,0,.05) 52.3% 74%, transparent 74.3%),
-    linear-gradient(170deg, rgba(255,255,255,.6), rgba(0,0,0,.03)),
-    #fdfcf7;
-  box-shadow: 0 18px 28px -12px rgba(0,0,0,.45), 0 2px 0 rgba(0,0,0,.08);
-  transform: rotate(-1.4deg);
-  font-family: "Permanent Marker", var(--f-type);
-  color: #151515;
-}
-.gaffa {
-  position: absolute; top: -14px; width: 128px; height: 36px;
-  background: repeating-linear-gradient(90deg, rgba(255,255,255,.06) 0 2px, transparent 2px 5px), #5c5d5f;
-  box-shadow: 0 2px 3px rgba(0,0,0,.35);
-  clip-path: polygon(3% 0, 97% 4%, 100% 30%, 96% 55%, 100% 82%, 95% 100%, 4% 96%, 0 70%, 3% 45%, 0 18%);
-}
-.gaffa-l { left: -18px; transform: rotate(-32deg); }
-.gaffa-r { right: -18px; transform: rotate(28deg); }
-.bierkring {
-  position: absolute; right: 14%; bottom: 13%; width: 120px; height: 120px; border-radius: 50%;
-  border: 7px solid rgba(150, 96, 30, .16); border-left-color: rgba(150, 96, 30, .07);
-  transform: rotate(20deg); pointer-events: none;
-}
-.setlist-kop {
-  margin: 0 0 18px; font-size: clamp(2rem, 5vw, 2.8rem); line-height: 1; transform: rotate(-2deg);
-  text-decoration: underline; text-decoration-thickness: 4px; text-underline-offset: 7px;
-}
-.setlist-sub { display: block; font-size: .42em; text-decoration: none; margin-top: 10px; color: #444; }
-.tracks { list-style: none; margin: 0; padding: 0; counter-reset: nr; }
-.track {
-  counter-increment: nr; position: relative;
-  display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 2px 14px;
-  padding: 7px 0 7px var(--inspring, 0px); transform: rotate(var(--schuin, 0deg));
-}
-.track-titel { font-size: clamp(1.3rem, 3vw, 1.75rem); line-height: 1.1; text-transform: uppercase; }
-.track-titel::before { content: counter(nr) ". "; font-size: .7em; color: var(--roze-diep); }
+/* Setlijst: foto van het podium met stickers als speelknoppen */
+.setlist-foto { margin: 0; }
+.setlist-beeld { position: relative; border: 6px solid var(--zwart); box-shadow: 8px 8px 0 var(--roze); transform: rotate(-.4deg); background: #1a1714; }
+.setlist-beeld { overflow: hidden; }
+.setlist-binnen { position: relative; }
+.setlist-binnen img { width: 100%; }
+@media (max-width: 700px) { .setlist-binnen { width: 215%; margin-left: -27%; } }
+.tracks-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.sticker { position: absolute; transform: translate(-50%, -50%) rotate(var(--draai, -8deg)); display: grid; justify-items: center; gap: 4px; width: clamp(28px, 4.2%, 56px); }
 .demo-knop {
-  position: relative; width: 62px; height: 62px; border-radius: 50%; cursor: pointer;
-  display: grid; place-items: center; align-content: center; gap: 0;
+  position: relative; width: 100%; aspect-ratio: 1; border-radius: 50%; cursor: pointer; padding: 0;
+  display: grid; place-items: center; align-content: center;
   background: var(--roze); color: var(--geel); border: 3px solid #151515;
-  box-shadow: 2px 3px 0 rgba(0,0,0,.35); transform: rotate(-9deg);
-  font-family: var(--f-display); transition: transform .12s, background .12s;
+  box-shadow: 2px 4px 6px rgba(0,0,0,.55); font-family: var(--f-display);
+  transition: transform .12s, background .12s;
 }
 .demo-knop::after { content: ""; position: absolute; inset: 3px; border-radius: 50%; border: 2px dashed rgba(244, 200, 33, .55); pointer-events: none; }
-.demo-knop:hover { background: #151515; transform: rotate(6deg) scale(1.05); }
-.demo-knop:active { transform: rotate(-9deg) scale(.95); }
-.sticker-tekst { font-size: .72rem; letter-spacing: .08em; line-height: 1; text-transform: uppercase; pointer-events: none; }
-.demo-knop svg { width: 20px; height: 20px; fill: currentColor; pointer-events: none; }
+.demo-knop:hover { background: #151515; transform: scale(1.08) rotate(12deg); }
+.demo-knop:active { transform: scale(.94); }
+.sticker-tekst { font-size: clamp(.42rem, .9vw, .7rem); letter-spacing: .08em; line-height: 1; text-transform: uppercase; pointer-events: none; }
+.demo-knop svg { width: 38%; height: auto; fill: currentColor; pointer-events: none; }
 .demo-knop .i-pauze, .demo-knop.speelt .i-speel { display: none; }
 .demo-knop.speelt .i-pauze { display: inline; }
 .demo-knop.speelt { background: #151515; }
-.voortgang { grid-column: 1 / -1; height: 4px; background: rgba(0,0,0,.08); border-radius: 2px; }
-.voortgang-vul { display: block; height: 100%; width: 0; background: var(--roze); border-radius: 2px; transition: width .25s linear; }
-.krabbel { position: absolute; margin: 0; color: var(--roze-diep); font-size: 1.15rem; line-height: 1.1; pointer-events: none; }
-.krabbel-1 { top: 74px; right: 8%; transform: rotate(9deg); }
-.krabbel-2 { bottom: 70px; right: 7%; transform: rotate(-9deg); text-align: right; font-size: 1.3rem; }
-
-/* Podium: zwarte planken, kabels en een afgeragde wedge */
-.podium {
-  position: relative; padding: clamp(40px, 6vw, 70px) clamp(16px, 4vw, 48px) clamp(150px, 18vw, 190px);
-  background:
-    radial-gradient(ellipse at 30% 20%, rgba(255,255,255,.07), transparent 60%),
-    repeating-linear-gradient(90deg, transparent 0 118px, rgba(0,0,0,.65) 118px 121px),
-    repeating-linear-gradient(0deg, rgba(255,255,255,.018) 0 2px, transparent 2px 7px),
-    linear-gradient(180deg, #2a2724, #191715);
-  box-shadow: inset 0 0 60px rgba(0,0,0,.7), 8px 8px 0 var(--zwart);
-  overflow: hidden;
-}
-.podium::before { /* gaffa-kruisjes en krassen op de vloer */
-  content: ""; position: absolute; inset: 0; pointer-events: none;
-  background:
-    linear-gradient(35deg, transparent 48.6%, rgba(255,255,255,.14) 49%, transparent 49.4%) 80% 8% / 160px 90px no-repeat,
-    linear-gradient(-20deg, transparent 49%, rgba(255,255,255,.1) 49.5%, transparent 50%) 10% 92% / 220px 60px no-repeat,
-    linear-gradient(90deg, transparent 40%, #c9b13a 40% 60%, transparent 60%) 92% 40% / 40px 10px no-repeat,
-    linear-gradient(0deg, transparent 40%, #c9b13a 40% 60%, transparent 60%) 92% 40% / 10px 40px no-repeat;
-}
-.kabels { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
-.wedge { position: absolute; width: clamp(220px, 34vw, 340px); right: -10px; bottom: -14px; transform: rotate(-6deg); filter: drop-shadow(0 12px 14px rgba(0,0,0,.6)); pointer-events: none; z-index: 2; }
-.podium .setlist { z-index: 1; }
-.setlist-kop { font-family: "Rock Salt", "Permanent Marker", var(--f-type); }
-.track-titel { font-family: "Permanent Marker", var(--f-type); }
-.track.eerste-extra { margin-top: 16px; padding-top: 16px; }
-.track.eerste-extra::before { content: ""; position: absolute; left: 0; right: 18%; top: 0; height: 4px; background: #151515; border-radius: 2px; transform: rotate(-1.2deg); }
-.track.extra .track-titel::before { color: #151515; }
-.krabbel { font-family: "Rock Salt", "Permanent Marker", var(--f-type); }
+.demo-knop.speelt::before { content: ""; position: absolute; inset: -8px; border-radius: 50%; border: 3px solid var(--geel); animation: puls 1.2s ease-out infinite; pointer-events: none; }
+@keyframes puls { from { opacity: .9; transform: scale(.9); } to { opacity: 0; transform: scale(1.25); } }
+.voortgang { width: 100%; height: 5px; background: rgba(0,0,0,.55); border-radius: 3px; overflow: hidden; }
+.voortgang-vul { display: block; height: 100%; width: 0; background: var(--geel); transition: width .25s linear; }
 .demo-legenda { margin: 22px 0 0; font-family: var(--f-type); font-size: .9rem; display: flex; align-items: center; gap: 8px; }
 .demo-sticker-mini { width: 18px; height: 18px; border-radius: 50%; background: var(--roze); border: 2px solid #151515; flex: none; }
-@media (max-width: 480px) { nav a[href="#muziek"] { display: none; } .krabbel { display: none; } .demo-knop { width: 54px; height: 54px; } }
-@media (prefers-reduced-motion: reduce) { .voortgang-vul, .demo-knop { transition: none; } }
+@media (max-width: 480px) { nav a[href="#muziek"] { display: none; } }
+@media (prefers-reduced-motion: reduce) { .voortgang-vul, .demo-knop { transition: none; } .demo-knop.speelt::before { animation: none; } }

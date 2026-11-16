@@ -49,8 +49,8 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Permanent+Marker&family=Rock+Salt&family=Archivo:wght@400;600;800&family=Special+Elite&family=Tinos:wght@400;700&display=swap">
-<link rel="stylesheet" href="style.css?v=20261116d">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;600;800&family=Special+Elite&family=Tinos:wght@400;700&display=swap">
+<link rel="stylesheet" href="style.css?v=20261117a">
 </head>
 <body>
 
@@ -134,47 +134,15 @@
         <p class="sectie-intro" data-t="muziek.intro">Luister naar onze demo's, live opgenomen tijdens onze repetities. Druk op de knop bij een nummer en zet het volume open.</p>
         <p class="live-noot" data-t="muziek.live">Live spelen we het complete album, aangevuld met unieke bootlegs en covers die de Sex Pistols zelf ook speelden.</p>
       </div>
-      <div class="podium">
-        <svg class="kabels" viewBox="0 0 600 900" preserveAspectRatio="none" aria-hidden="true">
-          <path d="M-20 120 C 120 160, 60 300, 180 360 S 120 620, 40 700 S 90 880, 160 940" stroke="#0c0c0c" stroke-width="14" fill="none" stroke-linecap="round"/>
-          <path d="M-20 120 C 120 160, 60 300, 180 360 S 120 620, 40 700 S 90 880, 160 940" stroke="#2c2c2c" stroke-width="4" fill="none" stroke-linecap="round" transform="translate(-3,-3)"/>
-          <path d="M620 40 C 520 120, 600 220, 500 300 S 560 520, 470 560" stroke="#101010" stroke-width="11" fill="none" stroke-linecap="round"/>
-          <path d="M620 40 C 520 120, 600 220, 500 300 S 560 520, 470 560" stroke="#333" stroke-width="3" fill="none" stroke-linecap="round" transform="translate(-2,-2)"/>
-          <rect x="452" y="548" width="34" height="18" rx="4" fill="#8d8f93" transform="rotate(-40 470 560)"/>
-          <rect x="446" y="551" width="10" height="12" rx="2" fill="#555" transform="rotate(-40 470 560)"/>
-          <path d="M640 760 C 520 700, 470 820, 380 790 S 300 900, 260 940" stroke="#b3171d" stroke-width="9" fill="none" stroke-linecap="round"/>
-          <path d="M640 760 C 520 700, 470 820, 380 790 S 300 900, 260 940" stroke="#d9363c" stroke-width="2.5" fill="none" stroke-linecap="round" transform="translate(-2,-2)"/>
-          <path d="M-30 520 C 60 500, 30 600, 110 610" stroke="#1d3f8f" stroke-width="8" fill="none" stroke-linecap="round"/>
-          <rect x="100" y="600" width="30" height="16" rx="4" fill="#8d8f93" transform="rotate(8 112 608)"/>
-        </svg>
-        <svg class="wedge" viewBox="0 0 320 230" aria-hidden="true">
-          <defs>
-            <pattern id="grille" width="7" height="7" patternUnits="userSpaceOnUse"><rect width="7" height="7" fill="#1b1b1b"/><circle cx="3.5" cy="3.5" r="2" fill="#050505"/></pattern>
-          </defs>
-          <polygon points="18,40 300,14 312,196 8,214" fill="#101010"/>
-          <polygon points="18,40 300,14 312,196 8,214" fill="none" stroke="#2a2a2a" stroke-width="4"/>
-          <polygon points="40,58 284,36 292,178 32,194" fill="url(#grille)" stroke="#3a3a3a" stroke-width="3"/>
-          <path d="M210 60 l26 22 l-8 30 l18 26" stroke="#4a4a4a" stroke-width="2" fill="none"/>
-          <path d="M60 170 q20-6 34 4" stroke="#575757" stroke-width="3" fill="none"/>
-          <path d="M8 214 l18-6 l-6-20 z" fill="#2b2b2b"/>
-          <path d="M300 14 l12 182" stroke="#6a6a6a" stroke-width="2" stroke-dasharray="14 9 4 12"/>
-          <path d="M22 44 l276-26" stroke="#5a5a5a" stroke-width="1.5" stroke-dasharray="30 6 8 20 50 10"/>
-          <rect x="120" y="110" width="88" height="30" fill="#5c5d5f" transform="rotate(-7 164 125)"/>
-          <path d="M126 108 l82 -10" stroke="#777" stroke-width="1" transform="rotate(-7 164 125)"/>
-          <circle cx="250" cy="160" r="9" fill="#222" stroke="#666" stroke-width="2"/>
-          <path d="M150 196 q14 10 30 2" stroke="#7d7d7d" stroke-width="2" fill="none"/>
-        </svg>
-        <div class="setlist">
-          <span class="gaffa gaffa-l" aria-hidden="true"></span>
-          <span class="gaffa gaffa-r" aria-hidden="true"></span>
-          <span class="bierkring" aria-hidden="true"></span>
-          <p class="setlist-kop">Setlist</p>
-          <ol class="tracks" id="tracks"></ol>
-          <p class="krabbel krabbel-1" aria-hidden="true">TEMPO&nbsp;!!!</p>
-          <p class="krabbel krabbel-2" aria-hidden="true">HARDER!!</p>
-          <p class="demo-legenda"><span class="demo-sticker-mini" aria-hidden="true"></span> <span data-t="muziek.legenda">= live opgenomen demo, hier te beluisteren</span></p>
+      <figure class="setlist-foto">
+        <div class="setlist-beeld">
+          <div class="setlist-binnen" id="setlist-beeld">
+          <img src="img/setlist.jpg" width="1672" height="941" loading="lazy" data-ta="alt:muziek.fotoalt" alt="Onze handgeschreven setlijst, vastgeplakt op het podium naast een gitaarversterker en een effectpedaal">
         </div>
-      </div>
+        </div>
+        <ol class="tracks-sr" id="tracks"></ol>
+        <figcaption class="demo-legenda"><span class="demo-sticker-mini" aria-hidden="true"></span> <span data-t="muziek.legenda">= live opgenomen demo, druk op de sticker om te luisteren</span></figcaption>
+      </figure>
     </div>
   </section>
 
@@ -248,7 +216,7 @@
   <p id="lichtbak-tekst"></p>
 </dialog>
 
-<script src="gegevens.js?v=20261116d"></script>
-<script src="site.js?v=20261116d"></script>
+<script src="gegevens.js?v=20261117a"></script>
+<script src="site.js?v=20261117a"></script>
 </body>
 </html>
