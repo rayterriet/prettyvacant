@@ -72,9 +72,10 @@ const TOUR = [
    --------------------------------------------------------- */
 // Muzieksectie: onze setlijst, in de volgorde van de foto img/setlist.jpg.
 // Bij een nummer met een live demo staat 'demo' (mp3 in de map muziek/) en 'plek':
-// waar de speelknop op de foto komt, in procenten van links en van boven.
+// waar het nummer op de foto staat: [links, hoogte, breedte] in procenten van de foto.
+// De markering komt over het nummer heen, de speelsticker er links naast.
 const MUZIEK = [
-  { titel: 'Pretty Vacant', demo: 'muziek/pretty-vacant-demo.mp3', plek: [18.5, 26] },
+  { titel: 'Pretty Vacant', demo: 'muziek/pretty-vacant-demo.mp3', plek: [23.6, 26.2, 14.2] },
   { titel: 'Holidays in the Sun' },
   { titel: 'No Feelings' },
   { titel: 'Submission' },
@@ -82,14 +83,14 @@ const MUZIEK = [
   { titel: 'Seventeen' },
   { titel: 'Did You No Wrong' },
   { titel: 'Liar' },
-  { titel: 'Bodies', demo: 'muziek/bodies-demo.mp3', plek: [15.6, 49.6] },
+  { titel: 'Bodies', demo: 'muziek/bodies-demo.mp3', plek: [24.3, 50.6, 8.6] },
   { titel: "(I'm Not Your) Stepping Stone" },
-  { titel: 'God Save the Queen', demo: 'muziek/god-save-the-queen-demo.mp3', plek: [19.6, 55.2] },
+  { titel: 'God Save the Queen', demo: 'muziek/god-save-the-queen-demo.mp3', plek: [24.3, 55.9, 17.8] },
   { titel: 'Satellite' },
   { titel: 'New York' },
   { titel: 'Substitute' },
   { titel: 'E.M.I.' },
-  { titel: 'Anarchy in the U.K.', demo: 'muziek/anarchy-in-the-uk-demo.mp3', plek: [18.8, 69] },
+  { titel: 'Anarchy in the U.K.', demo: 'muziek/anarchy-in-the-uk-demo.mp3', plek: [24, 71.1, 19.6] },
   { titel: 'Silly Thing' },
   { titel: 'No One Is Innocent' },
   { titel: 'I Wanna Be Me' },

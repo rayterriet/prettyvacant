@@ -17,7 +17,7 @@
       'nav.muziek': 'Muziek',
       'muziek.kop': 'Muziek',
       'muziek.intro': "Luister naar onze demo's, live opgenomen tijdens onze repetities. Druk op de knop bij een nummer en zet het volume open.",
-      'muziek.live': 'Live spelen we het complete album, aangevuld met unieke bootlegs en covers die de Sex Pistols zelf ook speelden.',
+      'muziek.live': 'Live spelen we het complete album, aangevuld met unieke nummers en covers die de Sex Pistols zelf ook speelden.',
       'muziek.demo': 'Live', 'muziek.fotoalt': 'Onze handgeschreven setlijst, vastgeplakt op het podium naast een gitaarversterker en een effectpedaal',
       'muziek.legenda': '= live opgenomen demo, druk op de sticker om te luisteren',
       'muziek.speel': 'Speel demo: ', 'muziek.pauze': 'Pauzeer demo: ',
@@ -62,7 +62,7 @@
       'nav.muziek': 'Music',
       'muziek.kop': 'Music',
       'muziek.intro': 'Have a listen to our demos, recorded live at our rehearsals. Hit the button next to a song and turn it up.',
-      'muziek.live': 'Live, we play the complete album, plus rare bootleg tracks and the covers the Sex Pistols played themselves.',
+      'muziek.live': 'Live, we play the complete album, plus rare songs and the covers the Sex Pistols played themselves.',
       'muziek.demo': 'Live', 'muziek.fotoalt': 'Our handwritten setlist, taped to the stage next to a guitar amp and an effects pedal',
       'muziek.legenda': '= demo recorded live, hit the sticker to listen',
       'muziek.speel': 'Play demo: ', 'muziek.pauze': 'Pause demo: ',
@@ -107,7 +107,7 @@
       'nav.muziek': 'Musik',
       'muziek.kop': 'Musik',
       'muziek.intro': 'Hört in unsere Demos rein, live aufgenommen bei unseren Proben. Drückt auf den Knopf neben einem Song und dreht auf.',
-      'muziek.live': 'Live spielen wir das komplette Album, ergänzt um seltene Bootleg-Songs und die Coverversionen, die die Sex Pistols selbst gespielt haben.',
+      'muziek.live': 'Live spielen wir das komplette Album, ergänzt um seltene Songs und die Coverversionen, die die Sex Pistols selbst gespielt haben.',
       'muziek.demo': 'Live', 'muziek.fotoalt': 'Unsere handgeschriebene Setlist, auf die Bühne geklebt neben einem Gitarrenverstärker und einem Effektpedal',
       'muziek.legenda': '= live aufgenommenes Demo, auf den Sticker drücken zum Anhören',
       'muziek.speel': 'Demo abspielen: ', 'muziek.pauze': 'Demo pausieren: ',
@@ -441,8 +441,12 @@
     (typeof MUZIEK !== 'undefined' ? MUZIEK : []).forEach(function (n, i) {
       lijst.appendChild(el('li', null, n.titel));
       if (!n.demo || !n.plek) return;
+      var markeer = el('button', 'markeer');
+      markeer.type = 'button'; markeer.tabIndex = -1; markeer.setAttribute('aria-hidden', 'true'); markeer.dataset.src = n.demo;
+      markeer.style.left = n.plek[0] + '%'; markeer.style.top = n.plek[1] + '%'; markeer.style.width = (n.plek[2] || 12) + '%';
+      beeld.appendChild(markeer);
       var st = el('div', 'sticker');
-      st.style.left = n.plek[0] + '%'; st.style.top = n.plek[1] + '%';
+      st.style.left = (n.plek[0] - 1.6) + '%'; st.style.top = n.plek[1] + '%';
       st.style.setProperty('--draai', [-10, 7, -5, 9][i % 4] + 'deg');
       var knop = el('button', 'demo-knop');
       knop.type = 'button'; knop.dataset.titel = n.titel; knop.dataset.src = n.demo;
@@ -450,10 +454,12 @@
       var balk = el('span', 'voortgang'); balk.appendChild(el('span', 'voortgang-vul'));
       st.appendChild(knop); st.appendChild(balk);
       knopStand(knop, actief === n.demo && !speler.paused);
-      knop.addEventListener('click', function () {
+      function speelAf() {
         if (actief === n.demo) { if (speler.paused) speler.play(); else speler.pause(); return; }
         actief = n.demo; speler.src = n.demo; speler.play();
-      });
+      }
+      knop.addEventListener('click', speelAf);
+      markeer.addEventListener('click', speelAf);
       beeld.appendChild(st);
     });
   }
@@ -461,6 +467,8 @@
     document.querySelectorAll('#setlist-beeld .demo-knop').forEach(function (k) {
       var dit = k.dataset.src === actief;
       knopStand(k, dit && !speler.paused);
+      var m = document.querySelector('#setlist-beeld .markeer[data-src="' + k.dataset.src + '"]');
+      if (m) m.classList.toggle('speelt', dit && !speler.paused);
       var vul = k.parentNode.querySelector('.voortgang-vul');
       if (!dit) vul.style.width = '0%';
     });
