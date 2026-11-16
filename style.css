@@ -346,35 +346,66 @@ a.chip:hover { background: var(--roze); }
   font-size: clamp(1.15rem, 2.2vw, 1.45rem); line-height: 1.25;
   padding: 16px 20px; transform: rotate(-1.2deg); box-shadow: 6px 6px 0 var(--roze);
 }
-.tracklist { transform: rotate(.6deg); }
-.album-titel { font-size: .95rem; }
-.album-jaar { margin: 2px 0 14px; font-family: var(--f-type); font-size: .95rem; }
-.tracks { list-style: none; margin: 0; padding: 0; }
+/* Setlist: gekreukt A4'tje met stift, vastgeplakt met gaffatape */
+.setlist {
+  position: relative; padding: clamp(36px, 5vw, 52px) clamp(22px, 4vw, 44px) 30px;
+  background:
+    linear-gradient(115deg, rgba(0,0,0,.05) 0 18%, transparent 18.3% 41%, rgba(0,0,0,.045) 41.3% 63%, transparent 63.3%),
+    linear-gradient(28deg, transparent 0 52%, rgba(0,0,0,.05) 52.3% 74%, transparent 74.3%),
+    linear-gradient(170deg, rgba(255,255,255,.6), rgba(0,0,0,.03)),
+    #fdfcf7;
+  box-shadow: 0 18px 28px -12px rgba(0,0,0,.45), 0 2px 0 rgba(0,0,0,.08);
+  transform: rotate(-1.4deg);
+  font-family: "Permanent Marker", var(--f-type);
+  color: #151515;
+}
+.gaffa {
+  position: absolute; top: -14px; width: 128px; height: 36px;
+  background: repeating-linear-gradient(90deg, rgba(255,255,255,.06) 0 2px, transparent 2px 5px), #5c5d5f;
+  box-shadow: 0 2px 3px rgba(0,0,0,.35);
+  clip-path: polygon(3% 0, 97% 4%, 100% 30%, 96% 55%, 100% 82%, 95% 100%, 4% 96%, 0 70%, 3% 45%, 0 18%);
+}
+.gaffa-l { left: -18px; transform: rotate(-32deg); }
+.gaffa-r { right: -18px; transform: rotate(28deg); }
+.bierkring {
+  position: absolute; right: 14%; bottom: 13%; width: 120px; height: 120px; border-radius: 50%;
+  border: 7px solid rgba(150, 96, 30, .16); border-left-color: rgba(150, 96, 30, .07);
+  transform: rotate(20deg); pointer-events: none;
+}
+.setlist-kop {
+  margin: 0 0 18px; font-size: clamp(2rem, 5vw, 2.8rem); line-height: 1; transform: rotate(-2deg);
+  text-decoration: underline; text-decoration-thickness: 4px; text-underline-offset: 7px;
+}
+.setlist-sub { display: block; font-size: .42em; text-decoration: none; margin-top: 10px; color: #444; }
+.tracks { list-style: none; margin: 0; padding: 0; counter-reset: nr; }
 .track {
-  display: grid; grid-template-columns: 2.2em minmax(0, 1fr) auto auto; align-items: center; gap: 4px 12px;
-  padding: 9px 0; border-bottom: 2px dashed rgba(35, 31, 32, .25);
+  counter-increment: nr; position: relative;
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 2px 14px;
+  padding: 7px 0 7px var(--inspring, 0px); transform: rotate(var(--schuin, 0deg));
 }
-.track:last-child { border-bottom: 0; }
-.track-nr { font-family: var(--f-type); color: var(--roze-diep); }
-.track-titel { font-family: var(--f-display); text-transform: uppercase; letter-spacing: .03em; font-size: clamp(1.1rem, 2.4vw, 1.35rem); line-height: 1.15; }
-.track:not(.heeft-demo) .track-titel { color: rgba(35, 31, 32, .78); }
-.demo-chip {
-  font-family: var(--f-type); font-size: .78rem; text-transform: uppercase;
-  background: var(--geel); color: var(--zwart); padding: 1px 7px; border: 2px solid var(--zwart); transform: rotate(-3deg);
-}
+.track-titel { font-size: clamp(1.3rem, 3vw, 1.75rem); line-height: 1.1; text-transform: uppercase; }
+.track-titel::before { content: counter(nr) ". "; font-size: .7em; color: var(--roze-diep); }
 .demo-knop {
-  width: 46px; height: 46px; display: grid; place-items: center; cursor: pointer;
-  background: var(--roze); color: var(--geel); border: 3px solid var(--zwart);
-  box-shadow: 3px 3px 0 var(--zwart); transform: rotate(-4deg); transition: transform .12s, box-shadow .12s, background .12s;
+  position: relative; width: 62px; height: 62px; border-radius: 50%; cursor: pointer;
+  display: grid; place-items: center; align-content: center; gap: 0;
+  background: var(--roze); color: var(--geel); border: 3px solid #151515;
+  box-shadow: 2px 3px 0 rgba(0,0,0,.35); transform: rotate(-9deg);
+  font-family: var(--f-display); transition: transform .12s, background .12s;
 }
-.demo-knop:hover { background: var(--zwart); transform: rotate(3deg); }
-.demo-knop:active { box-shadow: 0 0 0 var(--zwart); transform: translate(3px, 3px) rotate(-4deg); }
-.demo-knop svg { width: 22px; height: 22px; fill: currentColor; pointer-events: none; }
-.demo-knop .i-pauze, .demo-knop.demo-knopt .i-speel { display: none; }
-.demo-knop.demo-knopt .i-pauze { display: inline; }
-.demo-knop.demo-knopt { background: var(--zwart); }
-.voortgang { grid-column: 2 / -1; height: 5px; background: rgba(35, 31, 32, .15); }
-.voortgang-vul { display: block; height: 100%; width: 0; background: var(--roze); transition: width .25s linear; }
-.demo-legenda { margin: 16px 0 0; font-family: var(--f-type); font-size: .9rem; }
-@media (max-width: 480px) { nav a[href="#muziek"] { display: none; } .track { grid-template-columns: 2em minmax(0, 1fr) auto; } .track .demo-chip { display: none; } }
+.demo-knop::after { content: ""; position: absolute; inset: 3px; border-radius: 50%; border: 2px dashed rgba(244, 200, 33, .55); pointer-events: none; }
+.demo-knop:hover { background: #151515; transform: rotate(6deg) scale(1.05); }
+.demo-knop:active { transform: rotate(-9deg) scale(.95); }
+.sticker-tekst { font-size: .72rem; letter-spacing: .08em; line-height: 1; text-transform: uppercase; pointer-events: none; }
+.demo-knop svg { width: 20px; height: 20px; fill: currentColor; pointer-events: none; }
+.demo-knop .i-pauze, .demo-knop.speelt .i-speel { display: none; }
+.demo-knop.speelt .i-pauze { display: inline; }
+.demo-knop.speelt { background: #151515; }
+.voortgang { grid-column: 1 / -1; height: 4px; background: rgba(0,0,0,.08); border-radius: 2px; }
+.voortgang-vul { display: block; height: 100%; width: 0; background: var(--roze); border-radius: 2px; transition: width .25s linear; }
+.krabbel { position: absolute; margin: 0; color: var(--roze-diep); font-size: 1.15rem; line-height: 1.1; pointer-events: none; }
+.krabbel-1 { top: 74px; right: 8%; transform: rotate(9deg); }
+.krabbel-2 { bottom: 64px; right: 7%; transform: rotate(-7deg); text-align: right; }
+.demo-legenda { margin: 22px 0 0; font-family: var(--f-type); font-size: .9rem; display: flex; align-items: center; gap: 8px; }
+.demo-sticker-mini { width: 18px; height: 18px; border-radius: 50%; background: var(--roze); border: 2px solid #151515; flex: none; }
+@media (max-width: 480px) { nav a[href="#muziek"] { display: none; } .krabbel { display: none; } .demo-knop { width: 54px; height: 54px; } }
 @media (prefers-reduced-motion: reduce) { .voortgang-vul, .demo-knop { transition: none; } }

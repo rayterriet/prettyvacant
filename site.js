@@ -18,7 +18,7 @@
       'muziek.kop': 'Muziek',
       'muziek.intro': "Luister naar onze demo's, live opgenomen tijdens onze repetities. Druk op de knop bij een nummer en zet het volume open.",
       'muziek.live': 'Live spelen we het complete album, aangevuld met unieke bootlegs en covers die de Sex Pistols zelf ook speelden.',
-      'muziek.demo': 'Live demo', 'muziek.legenda': '= live opgenomen demo, hier te beluisteren',
+      'muziek.demo': 'Live', 'muziek.legenda': '= live opgenomen demo, hier te beluisteren',
       'muziek.speel': 'Speel demo: ', 'muziek.pauze': 'Pauzeer demo: ',
       'top': 'Pretty Vacant, naar boven',
       'menu': 'Hoofdmenu',
@@ -62,7 +62,7 @@
       'muziek.kop': 'Music',
       'muziek.intro': 'Have a listen to our demos, recorded live at our rehearsals. Hit the button next to a song and turn it up.',
       'muziek.live': 'Live, we play the complete album, plus rare bootleg tracks and the covers the Sex Pistols played themselves.',
-      'muziek.demo': 'Live demo', 'muziek.legenda': '= demo recorded live, listen here',
+      'muziek.demo': 'Live', 'muziek.legenda': '= demo recorded live, listen here',
       'muziek.speel': 'Play demo: ', 'muziek.pauze': 'Pause demo: ',
       'top': 'Pretty Vacant, back to top',
       'menu': 'Main menu',
@@ -106,7 +106,7 @@
       'muziek.kop': 'Musik',
       'muziek.intro': 'Hört in unsere Demos rein, live aufgenommen bei unseren Proben. Drückt auf den Knopf neben einem Song und dreht auf.',
       'muziek.live': 'Live spielen wir das komplette Album, ergänzt um seltene Bootleg-Songs und die Coverversionen, die die Sex Pistols selbst gespielt haben.',
-      'muziek.demo': 'Live-Demo', 'muziek.legenda': '= live aufgenommenes Demo, hier anhören',
+      'muziek.demo': 'Live', 'muziek.legenda': '= live aufgenommenes Demo, hier anhören',
       'muziek.speel': 'Demo abspielen: ', 'muziek.pauze': 'Demo pausieren: ',
       'top': 'Pretty Vacant, nach oben',
       'menu': 'Hauptmenü',
@@ -436,14 +436,15 @@
     lijst.textContent = '';
     (typeof MUZIEK !== 'undefined' ? MUZIEK : []).forEach(function (n, i) {
       var li = el('li', 'track' + (n.demo ? ' heeft-demo' : ''));
-      li.appendChild(el('span', 'track-nr', String(i + 1).padStart(2, '0')));
+      var schuin = [-1.6, 1.1, -0.4, 1.8, -1.2, 0.6, -2, 0.9, -0.7, 1.4, -1.1, 0.3][i % 12];
+      li.style.setProperty('--schuin', schuin + 'deg');
+      li.style.setProperty('--inspring', ((i * 37) % 5) * 6 + 'px');
       li.appendChild(el('span', 'track-titel', n.titel));
       if (n.demo) {
         var knop = el('button', 'demo-knop');
         knop.type = 'button'; knop.dataset.titel = n.titel; knop.dataset.src = n.demo;
-        knop.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path class="i-speel" d="M7 4l13 8-13 8z"/><path class="i-pauze" d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg>';
+        knop.innerHTML = '<span class="sticker-tekst">' + T('muziek.demo') + '</span><svg viewBox="0 0 24 24" aria-hidden="true"><path class="i-speel" d="M7 4l13 8-13 8z"/><path class="i-pauze" d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg>';
         var balk = el('span', 'voortgang'); balk.appendChild(el('span', 'voortgang-vul'));
-        li.appendChild(el('span', 'demo-chip', T('muziek.demo')));
         li.appendChild(knop); li.appendChild(balk);
         knopStand(knop, actief === knop.dataset.src && !speler.paused);
         knop.addEventListener('click', function () {
