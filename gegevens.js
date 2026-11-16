@@ -114,8 +114,6 @@ const VIDEOS = [
    Liefst liggend en niet groter dan ca. 2000 pixels breed.
    --------------------------------------------------------- */
 const FOTOS = [
-  { bestand: 'bandfoto-1.jpg', onderschrift: 'Pretty Vacant', onderschrift_en: 'Pretty Vacant', onderschrift_de: 'Pretty Vacant' },
-  { bestand: 'bandfoto-2.jpg', onderschrift: 'Pretty Vacant op het podium', onderschrift_en: 'Pretty Vacant on stage', onderschrift_de: 'Pretty Vacant auf der Bühne' },
   // Bandfoto erbij? Zet hem in de map "fotos" en voeg een regel toe:
   // { bestand: 'live-enschede.jpg', onderschrift: 'Live in De Stadsgraaf, Enschede', onderschrift_en: 'Live at De Stadsgraaf, Enschede' },
 ];

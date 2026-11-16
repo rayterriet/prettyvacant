@@ -14,6 +14,7 @@
   /* ---------- Teksten ---------- */
   var TEKSTEN = {
     nl: {
+      'fotos.leeg': "Binnenkort hier de eerste livefoto's.<br>Volg ons intussen op <a class=\"ig-link\" href=\"#\">Instagram</a>.",
       'band.fotoalt': 'Pretty Vacant voor een versleten Union Jack. Van links naar rechts: Jurrien, Ronald, Ray en Arthur',
       'nav.muziek': 'Muziek',
       'muziek.kop': 'Muziek',
@@ -60,6 +61,7 @@
       'dagen': ['zo', 'ma', 'di', 'wo', 'do', 'vr', 'za']
     },
     en: {
+      'fotos.leeg': 'Live photos coming soon.<br>In the meantime, follow us on <a class="ig-link" href="#">Instagram</a>.',
       'band.fotoalt': 'Pretty Vacant in front of a worn Union Jack. From left to right: Jurrien, Ronald, Ray and Arthur',
       'nav.muziek': 'Music',
       'muziek.kop': 'Music',
@@ -106,6 +108,7 @@
       'dagen': ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
     },
     de: {
+      'fotos.leeg': 'Livefotos folgen bald.<br>Folgt uns bis dahin auf <a class="ig-link" href="#">Instagram</a>.',
       'band.fotoalt': 'Pretty Vacant vor einem verschlissenen Union Jack. Von links nach rechts: Jurrien, Ronald, Ray und Arthur',
       'nav.muziek': 'Musik',
       'muziek.kop': 'Musik',
@@ -369,6 +372,7 @@
       if (onder) fig.appendChild(el('figcaption', null, onder));
       $('foto-grid').appendChild(fig);
     });
+    $('fotos-leeg').hidden = $('foto-grid').children.length > 0;
   }
   $('poster-knop').addEventListener('click', function () {
     var img = this.querySelector('img');

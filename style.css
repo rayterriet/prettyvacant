@@ -280,6 +280,8 @@ a.chip:hover { background: var(--roze); }
 
 /* ---------- Foto's ---------- */
 #fotos { background: var(--zwart); }
+#fotos .plek { border-color: var(--geel); color: var(--geel); margin-top: 32px; }
+#fotos .plek .label, #fotos .plek a { color: var(--roze); }
 .foto-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 420px), 1fr)); gap: 32px; }
 .foto {
   position: relative; margin: 0; color: var(--inkt);
