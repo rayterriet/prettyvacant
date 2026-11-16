@@ -115,7 +115,6 @@ const VIDEOS = [
 const FOTOS = [
   { bestand: 'bandfoto-1.jpg', onderschrift: 'Pretty Vacant', onderschrift_en: 'Pretty Vacant', onderschrift_de: 'Pretty Vacant' },
   { bestand: 'bandfoto-2.jpg', onderschrift: 'Pretty Vacant op het podium', onderschrift_en: 'Pretty Vacant on stage', onderschrift_de: 'Pretty Vacant auf der Bühne' },
-  { bestand: 'union-jack-backdrop.jpg', onderschrift: 'Ons podiumdoek', onderschrift_en: 'Our stage backdrop', onderschrift_de: 'Unser Bühnenbanner' },
   // Bandfoto erbij? Zet hem in de map "fotos" en voeg een regel toe:
   // { bestand: 'live-enschede.jpg', onderschrift: 'Live in De Stadsgraaf, Enschede', onderschrift_en: 'Live at De Stadsgraaf, Enschede' },
 ];
