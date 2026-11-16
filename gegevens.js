@@ -34,7 +34,7 @@ const BAND = {
    --------------------------------------------------------- */
 const LEDEN = [
   // 'plek': waar de naam over de bandfoto (fotos/band-union-jack.jpg) komt, in procenten van links en van boven.
-  { naam: 'Jurrien', rol: 'Bas', rol_en: 'Bass', rol_de: 'Bass', plek: [19, 84] },
+  { naam: 'Jurrien', rol: 'Bas', rol_en: 'Bass', rol_de: 'Bass', plek: [14, 84] },
   { naam: 'Ronald', rol: 'Zang', rol_en: 'Vocals', rol_de: 'Gesang', plek: [40, 89] },
   { naam: 'Ray', rol: 'Gitaar', rol_en: 'Guitar', rol_de: 'Gitarre', plek: [60.5, 84] },
   { naam: 'Arthur', rol: 'Drums', rol_en: 'Drums', rol_de: 'Schlagzeug', plek: [81, 89] },
