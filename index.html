@@ -50,7 +50,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;600;800&family=Special+Elite&family=Tinos:wght@400;700&display=swap">
-<link rel="stylesheet" href="style.css?v=20261110a">
+<link rel="stylesheet" href="style.css?v=20261116a">
 </head>
 <body>
 
@@ -63,6 +63,7 @@
     <nav data-ta="aria-label:menu" aria-label="Hoofdmenu">
       <a href="#band">Band</a>
       <a href="#tour">Tour</a>
+      <a href="#muziek" data-t="nav.muziek">Muziek</a>
       <a href="#video">Video</a>
       <a href="#fotos" data-t="nav.fotos">Foto's</a>
       <a href="#riders">Riders</a>
@@ -122,6 +123,23 @@
           <img src="img/tourposter.jpg?v=20261113a" alt="Tourposter Pretty Vacant: 24-10 De Stadsgraaf Enschede, 27-11 Café De Flierefluiter Apeldoorn, 22-1 Wielercafé Doetinchem, 19-2 Jolly Jug Enschede, 13-3 Rebel Yell Breda, 10-4 Leuvenheim Live Leuvenheim, 3-7 Stage Music Cafe Eindhoven, 2-10 Hèt Café Wervershoof" width="1128" height="1280" loading="lazy">
         </button>
       </figure>
+    </div>
+  </section>
+
+  <!-- MUZIEK -->
+  <section class="sectie muziek" id="muziek">
+    <div class="wrap muziek-grid">
+      <div class="muziek-tekst">
+        <h2 class="kop ransom" data-r data-t="muziek.kop">Muziek</h2>
+        <p class="sectie-intro" data-t="muziek.intro">Luister naar onze demo's. Druk op de knop bij een nummer en zet het volume open.</p>
+        <p class="live-noot" data-t="muziek.live">Live spelen we het complete album, aangevuld met unieke bootlegs en covers die de Sex Pistols zelf ook speelden.</p>
+      </div>
+      <div class="papier tracklist">
+        <p class="label album-titel">Never Mind the Bollocks, Here's the Sex Pistols</p>
+        <p class="album-jaar">1977</p>
+        <ol class="tracks" id="tracks"></ol>
+        <p class="demo-legenda"><span class="demo-chip" data-t="muziek.demo">Demo</span> <span data-t="muziek.legenda">= hier te beluisteren</span></p>
+      </div>
     </div>
   </section>
 
@@ -195,7 +213,7 @@
   <p id="lichtbak-tekst"></p>
 </dialog>
 
-<script src="gegevens.js?v=20261113a"></script>
-<script src="site.js?v=20261113a"></script>
+<script src="gegevens.js?v=20261116a"></script>
+<script src="site.js?v=20261116a"></script>
 </body>
 </html>

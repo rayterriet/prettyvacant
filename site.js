@@ -14,6 +14,12 @@
   /* ---------- Teksten ---------- */
   var TEKSTEN = {
     nl: {
+      'nav.muziek': 'Muziek',
+      'muziek.kop': 'Muziek',
+      'muziek.intro': "Luister naar onze demo's. Druk op de knop bij een nummer en zet het volume open.",
+      'muziek.live': 'Live spelen we het complete album, aangevuld met unieke bootlegs en covers die de Sex Pistols zelf ook speelden.',
+      'muziek.demo': 'Demo', 'muziek.legenda': '= hier te beluisteren',
+      'muziek.speel': 'Speel demo: ', 'muziek.pauze': 'Pauzeer demo: ',
       'top': 'Pretty Vacant, naar boven',
       'menu': 'Hoofdmenu',
       'nav.fotos': "Foto's",
@@ -52,6 +58,12 @@
       'dagen': ['zo', 'ma', 'di', 'wo', 'do', 'vr', 'za']
     },
     en: {
+      'nav.muziek': 'Music',
+      'muziek.kop': 'Music',
+      'muziek.intro': 'Have a listen to our demos. Hit the button next to a song and turn it up.',
+      'muziek.live': 'Live, we play the complete album, plus rare bootleg tracks and the covers the Sex Pistols played themselves.',
+      'muziek.demo': 'Demo', 'muziek.legenda': '= listen here',
+      'muziek.speel': 'Play demo: ', 'muziek.pauze': 'Pause demo: ',
       'top': 'Pretty Vacant, back to top',
       'menu': 'Main menu',
       'nav.fotos': 'Photos',
@@ -90,6 +102,12 @@
       'dagen': ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
     },
     de: {
+      'nav.muziek': 'Musik',
+      'muziek.kop': 'Musik',
+      'muziek.intro': 'Hört in unsere Demos rein. Drückt auf den Knopf neben einem Song und dreht auf.',
+      'muziek.live': 'Live spielen wir das komplette Album, ergänzt um seltene Bootleg-Songs und die Coverversionen, die die Sex Pistols selbst gespielt haben.',
+      'muziek.demo': 'Demo', 'muziek.legenda': '= hier anhören',
+      'muziek.speel': 'Demo abspielen: ', 'muziek.pauze': 'Demo pausieren: ',
       'top': 'Pretty Vacant, nach oben',
       'menu': 'Hauptmenü',
       'nav.fotos': 'Fotos',
@@ -404,6 +422,53 @@
     } catch (e) { selecteer(); }
   });
 
+
+  /* ---------- Muziek: tracklist met demo's ---------- */
+  var speler = new Audio(); speler.preload = 'none';
+  var actief = null;
+  function knopStand(knop, speelt) {
+    knop.classList.toggle('speelt', speelt);
+    knop.setAttribute('aria-pressed', speelt ? 'true' : 'false');
+    knop.setAttribute('aria-label', T(speelt ? 'muziek.pauze' : 'muziek.demo-knop') + knop.dataset.titel);
+  }
+  function tekenTracks() {
+    var lijst = $('tracks'); if (!lijst) return;
+    lijst.textContent = '';
+    (typeof MUZIEK !== 'undefined' ? MUZIEK : []).forEach(function (n, i) {
+      var li = el('li', 'track' + (n.demo ? ' heeft-demo' : ''));
+      li.appendChild(el('span', 'track-nr', String(i + 1).padStart(2, '0')));
+      li.appendChild(el('span', 'track-titel', n.titel));
+      if (n.demo) {
+        var knop = el('button', 'demo-knop');
+        knop.type = 'button'; knop.dataset.titel = n.titel; knop.dataset.src = n.demo;
+        knop.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path class="i-speel" d="M7 4l13 8-13 8z"/><path class="i-pauze" d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg>';
+        var balk = el('span', 'voortgang'); balk.appendChild(el('span', 'voortgang-vul'));
+        li.appendChild(el('span', 'demo-chip', T('muziek.demo')));
+        li.appendChild(knop); li.appendChild(balk);
+        knopStand(knop, actief === knop.dataset.src && !speler.paused);
+        knop.addEventListener('click', function () {
+          if (actief === n.demo) { if (speler.paused) speler.play(); else speler.pause(); return; }
+          actief = n.demo; speler.src = n.demo; speler.play();
+        });
+      }
+      lijst.appendChild(li);
+    });
+  }
+  function werkKnoppenBij() {
+    document.querySelectorAll('#tracks .demo-knop').forEach(function (k) {
+      var dit = k.dataset.src === actief;
+      knopStand(k, dit && !speler.paused);
+      var vul = k.parentNode.querySelector('.voortgang-vul');
+      if (!dit) vul.style.width = '0%';
+    });
+  }
+  ['play', 'pause', 'ended'].forEach(function (ev) { speler.addEventListener(ev, werkKnoppenBij); });
+  speler.addEventListener('timeupdate', function () {
+    var k = document.querySelector('#tracks .demo-knop[data-src="' + actief + '"]');
+    if (k && speler.duration) k.parentNode.querySelector('.voortgang-vul').style.width = (speler.currentTime / speler.duration * 100) + '%';
+  });
+  speler.addEventListener('ended', function () { speler.currentTime = 0; });
+
   /* ---------- Vindbaarheid: optredens als gestructureerde gegevens voor Google ---------- */
   (function () {
     if (!komend.length) return;
@@ -446,7 +511,7 @@
 
   /* ---------- Alles tekenen, en opnieuw bij taalwissel ---------- */
   function teken() {
-    vasteTeksten(); contactPersoon(); knipKoppen(); band(); tour(); video(); fotos(); riders();
+    vasteTeksten(); contactPersoon(); knipKoppen(); band(); tour(); video(); fotos(); riders(); tekenTracks();
   }
   document.querySelectorAll('[data-lang]').forEach(function (b) {
     b.addEventListener('click', function () {

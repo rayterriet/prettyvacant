@@ -70,6 +70,23 @@ const TOUR = [
    Eigen videobestand: zet de .mp4 (liefst kleiner dan 50 MB) en een
    plaatje in de map "video" en vul bestand en poster in.
    --------------------------------------------------------- */
+// Muzieksectie: de nummers van Never Mind the Bollocks (1977). Bij een nummer met
+// een demo staat 'demo' (het mp3-bestand in de map muziek/), dan krijgt het een speelknop.
+const MUZIEK = [
+  { titel: 'Holidays in the Sun' },
+  { titel: 'Bodies', demo: 'muziek/bodies-demo.mp3' },
+  { titel: 'No Feelings' },
+  { titel: 'Liar' },
+  { titel: 'God Save the Queen', demo: 'muziek/god-save-the-queen-demo.mp3' },
+  { titel: 'Problems' },
+  { titel: 'Seventeen' },
+  { titel: 'Anarchy in the U.K.', demo: 'muziek/anarchy-in-the-uk-demo.mp3' },
+  { titel: 'Submission' },
+  { titel: 'Pretty Vacant', demo: 'muziek/pretty-vacant-demo.mp3' },
+  { titel: 'New York' },
+  { titel: 'E.M.I.' },
+];
+
 const VIDEOS = [
   {
     bestand: 'aftermovie-enschede-2026.mp4',
