@@ -14,6 +14,7 @@
   /* ---------- Teksten ---------- */
   var TEKSTEN = {
     nl: {
+      'band.fotoalt': 'Pretty Vacant voor een versleten Union Jack. Van links naar rechts: Jurrien, Ronald, Ray en Arthur',
       'nav.muziek': 'Muziek',
       'muziek.kop': 'Muziek',
       'muziek.intro': "Luister naar onze demo's, live opgenomen tijdens onze repetities. Druk op de knop bij een nummer en zet het volume open.",
@@ -59,6 +60,7 @@
       'dagen': ['zo', 'ma', 'di', 'wo', 'do', 'vr', 'za']
     },
     en: {
+      'band.fotoalt': 'Pretty Vacant in front of a worn Union Jack. From left to right: Jurrien, Ronald, Ray and Arthur',
       'nav.muziek': 'Music',
       'muziek.kop': 'Music',
       'muziek.intro': 'Have a listen to our demos, recorded live at our rehearsals. Hit the button next to a song and turn it up.',
@@ -104,6 +106,7 @@
       'dagen': ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
     },
     de: {
+      'band.fotoalt': 'Pretty Vacant vor einem verschlissenen Union Jack. Von links nach rechts: Jurrien, Ronald, Ray und Arthur',
       'nav.muziek': 'Musik',
       'muziek.kop': 'Musik',
       'muziek.intro': 'Hört in unsere Demos rein, live aufgenommen bei unseren Proben. Drückt auf den Knopf neben einem Song und dreht auf.',
@@ -228,7 +231,8 @@
     $('leden').replaceChildren();
     (typeof LEDEN !== 'undefined' ? LEDEN : []).forEach(function (l, i) {
       if (!l || !l.naam) return;
-      var li = el('li', 'lid');
+      var li = el('li', 'lid' + (l.plek ? ' op-foto' : ''));
+      if (l.plek) { li.style.left = l.plek[0] + '%'; li.style.top = l.plek[1] + '%'; li.style.setProperty('--draai', [-4, 3, -2, 4][i % 4] + 'deg'); }
       if (l.foto) {
         var img = el('img', 'lid-foto');
         img.src = 'fotos/' + l.foto; img.alt = l.naam; img.loading = 'lazy';

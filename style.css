@@ -148,6 +148,26 @@ nav .nav-boek:hover { background: var(--geel); color: var(--zwart); }
 
 /* ---------- De band ---------- */
 .band { border-top: 6px solid var(--zwart); }
+/* Bandfoto met de namen er in knipletters overheen */
+.bandfoto { position: relative; margin: 32px 0 0; border: 6px solid var(--zwart); box-shadow: 10px 10px 0 var(--roze); container-type: inline-size; transform: rotate(-.5deg); }
+.bandfoto img { width: 100%; }
+.bandfoto .leden { display: block; margin: 0; position: absolute; inset: 0; pointer-events: none; }
+.lid.op-foto {
+  position: absolute; transform: translate(-50%, -50%) rotate(var(--draai, -3deg));
+  background: none; box-shadow: none; padding: 0; display: grid; justify-items: center; gap: .5cqw;
+}
+.op-foto .lid-naam { font-size: clamp(.9rem, 3.5cqw, 2.8rem); line-height: 1; white-space: nowrap; filter: drop-shadow(.3cqw .4cqw 0 rgba(0,0,0,.55)); }
+.op-foto .lid-naam .rl { padding: .06em .09em .02em; margin: 0 .02em; color: var(--zwart); background: var(--wit); font-family: var(--f-display); }
+.op-foto .lid-naam .rl.zw { background: var(--zwart); color: var(--wit); }
+.op-foto .lid-naam .rl.ro { background: var(--roze); color: var(--geel); }
+.op-foto .lid-naam .rl.ge { background: var(--geel); color: var(--zwart); }
+.op-foto .lid-naam .rl.wi { background: var(--wit); color: var(--zwart); }
+.op-foto .lid-naam .rl.kaal { background: #e9dcc0; color: #b3171d; }
+.op-foto .lid-naam .rl.f2 { font-family: var(--f-serif); font-weight: 700; }
+.op-foto .lid-naam .rl.f3 { font-family: var(--f-type); }
+.op-foto .lid-naam .rl.f4 { font-family: var(--f-tekst); font-weight: 800; }
+.op-foto .lid-rol { font-size: clamp(.5rem, 1.25cqw, .9rem); background: var(--zwart); color: var(--geel); font-family: var(--f-type); font-weight: 400; letter-spacing: .08em; padding: .2em .7em; transform: rotate(3deg); }
+
 .leden {
   list-style: none; margin: 32px 0 0; padding: 0;
   display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 22px;
