@@ -435,8 +435,8 @@
     var lijst = $('tracks'); if (!lijst) return;
     lijst.textContent = '';
     (typeof MUZIEK !== 'undefined' ? MUZIEK : []).forEach(function (n, i) {
-      var li = el('li', 'track' + (n.demo ? ' heeft-demo' : ''));
-      var schuin = [-1.6, 1.1, -0.4, 1.8, -1.2, 0.6, -2, 0.9, -0.7, 1.4, -1.1, 0.3][i % 12];
+      var li = el('li', 'track' + (n.demo ? ' heeft-demo' : '') + (n.extra ? ' extra' : '') + (n.extra && !(MUZIEK[i - 1] || {}).extra ? ' eerste-extra' : ''));
+      var schuin = [-1.6, 1.1, -0.4, 1.8, -1.2, 0.6, -2, 0.9, -0.7, 1.4, -1.1, 0.3, 1.5, -0.8][i % 14];
       li.style.setProperty('--schuin', schuin + 'deg');
       li.style.setProperty('--inspring', ((i * 37) % 5) * 6 + 'px');
       li.appendChild(el('span', 'track-titel', n.titel));

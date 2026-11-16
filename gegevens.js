@@ -70,7 +70,7 @@ const TOUR = [
    Eigen videobestand: zet de .mp4 (liefst kleiner dan 50 MB) en een
    plaatje in de map "video" en vul bestand en poster in.
    --------------------------------------------------------- */
-// Muzieksectie: de nummers van Never Mind the Bollocks (1977). Bij een nummer met
+// Muzieksectie: onze setlijst, de nummers van Never Mind the Bollocks (1977) plus extra's. Bij een nummer met
 // een demo staat 'demo' (het mp3-bestand in de map muziek/), dan krijgt het een speelknop.
 const MUZIEK = [
   { titel: 'Holidays in the Sun' },
@@ -85,6 +85,11 @@ const MUZIEK = [
   { titel: 'Pretty Vacant', demo: 'muziek/pretty-vacant-demo.mp3' },
   { titel: 'New York' },
   { titel: 'E.M.I.' },
+  // Extra nummers op onze setlijst (extra: true), met een streep erboven op de setlijst.
+  { titel: 'Substitute', extra: true },
+  { titel: 'Silly Thing', extra: true },
+  { titel: 'No One Is Innocent', extra: true },
+  { titel: 'I Wanna Be Me', extra: true },
 ];
 
 const VIDEOS = [

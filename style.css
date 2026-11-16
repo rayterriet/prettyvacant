@@ -336,7 +336,7 @@ a.chip:hover { background: var(--roze); }
 
 /* ---------- Muziek: tracklist met demo's ---------- */
 .muziek { border-top: 6px solid var(--zwart); }
-.muziek-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: clamp(28px, 5vw, 64px); align-items: start; }
+.muziek-grid { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.3fr); gap: clamp(28px, 5vw, 64px); align-items: start; }
 @media (max-width: 880px) { .muziek-grid { grid-template-columns: 1fr; } }
 .muziek-tekst { display: grid; gap: 22px; align-content: start; }
 .live-noot {
@@ -404,7 +404,36 @@ a.chip:hover { background: var(--roze); }
 .voortgang-vul { display: block; height: 100%; width: 0; background: var(--roze); border-radius: 2px; transition: width .25s linear; }
 .krabbel { position: absolute; margin: 0; color: var(--roze-diep); font-size: 1.15rem; line-height: 1.1; pointer-events: none; }
 .krabbel-1 { top: 74px; right: 8%; transform: rotate(9deg); }
-.krabbel-2 { bottom: 64px; right: 7%; transform: rotate(-7deg); text-align: right; }
+.krabbel-2 { bottom: 70px; right: 7%; transform: rotate(-9deg); text-align: right; font-size: 1.3rem; }
+
+/* Podium: zwarte planken, kabels en een afgeragde wedge */
+.podium {
+  position: relative; padding: clamp(40px, 6vw, 70px) clamp(16px, 4vw, 48px) clamp(150px, 18vw, 190px);
+  background:
+    radial-gradient(ellipse at 30% 20%, rgba(255,255,255,.07), transparent 60%),
+    repeating-linear-gradient(90deg, transparent 0 118px, rgba(0,0,0,.65) 118px 121px),
+    repeating-linear-gradient(0deg, rgba(255,255,255,.018) 0 2px, transparent 2px 7px),
+    linear-gradient(180deg, #2a2724, #191715);
+  box-shadow: inset 0 0 60px rgba(0,0,0,.7), 8px 8px 0 var(--zwart);
+  overflow: hidden;
+}
+.podium::before { /* gaffa-kruisjes en krassen op de vloer */
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background:
+    linear-gradient(35deg, transparent 48.6%, rgba(255,255,255,.14) 49%, transparent 49.4%) 80% 8% / 160px 90px no-repeat,
+    linear-gradient(-20deg, transparent 49%, rgba(255,255,255,.1) 49.5%, transparent 50%) 10% 92% / 220px 60px no-repeat,
+    linear-gradient(90deg, transparent 40%, #c9b13a 40% 60%, transparent 60%) 92% 40% / 40px 10px no-repeat,
+    linear-gradient(0deg, transparent 40%, #c9b13a 40% 60%, transparent 60%) 92% 40% / 10px 40px no-repeat;
+}
+.kabels { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.wedge { position: absolute; width: clamp(220px, 34vw, 340px); right: -10px; bottom: -14px; transform: rotate(-6deg); filter: drop-shadow(0 12px 14px rgba(0,0,0,.6)); pointer-events: none; z-index: 2; }
+.podium .setlist { z-index: 1; }
+.setlist-kop { font-family: "Rock Salt", "Permanent Marker", var(--f-type); }
+.track-titel { font-family: "Permanent Marker", var(--f-type); }
+.track.eerste-extra { margin-top: 16px; padding-top: 16px; }
+.track.eerste-extra::before { content: ""; position: absolute; left: 0; right: 18%; top: 0; height: 4px; background: #151515; border-radius: 2px; transform: rotate(-1.2deg); }
+.track.extra .track-titel::before { color: #151515; }
+.krabbel { font-family: "Rock Salt", "Permanent Marker", var(--f-type); }
 .demo-legenda { margin: 22px 0 0; font-family: var(--f-type); font-size: .9rem; display: flex; align-items: center; gap: 8px; }
 .demo-sticker-mini { width: 18px; height: 18px; border-radius: 50%; background: var(--roze); border: 2px solid #151515; flex: none; }
 @media (max-width: 480px) { nav a[href="#muziek"] { display: none; } .krabbel { display: none; } .demo-knop { width: 54px; height: 54px; } }
