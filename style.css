@@ -413,3 +413,8 @@ html .gig-actie .chip.prijs { white-space: normal; text-align: center; max-width
 .demo-sticker-mini { width: 18px; height: 18px; border-radius: 50%; background: var(--roze); border: 2px solid #151515; flex: none; }
 @media (max-width: 480px) { nav a[href="#muziek"] { display: none; } }
 @media (prefers-reduced-motion: reduce) { .voortgang-vul, .demo-knop { transition: none; } .demo-knop.speelt::before { animation: none; } }
+
+/* Gigstarter boekingsknop */
+.gigstarter-button { margin: 4px 0 18px; }
+.gigstarter-button img { width: auto; max-width: 220px; height: auto; transition: transform .12s; }
+.gigstarter-button a:hover img { transform: rotate(-2deg) scale(1.03); }

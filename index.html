@@ -50,7 +50,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;600;800&family=Special+Elite&family=Tinos:wght@400;700&display=swap">
-<link rel="stylesheet" href="style.css?v=20261117a">
+<link rel="stylesheet" href="style.css?v=20261117j">
 </head>
 <body>
 
@@ -199,6 +199,12 @@
         </div>
         <p class="label" data-t="contact.persoon">Contactpersoon</p>
         <p class="persoon"><span id="persoon-naam">Jurrien Schadron</span> <a class="tel" id="tel" href="tel:+31648600032">06 48 60 00 32</a></p>
+        <p class="label" data-t="contact.gigstarter">Boek via Gigstarter</p>
+        <div class="gigstarter-button" data-slug="pretty-vacant-sex-pistols-tribute" data-version="1">
+          <a href="https://www.gigstarter.nl/artists/pretty-vacant-sex-pistols-tribute" target="_blank" rel="noopener">
+            <img src="https://gigstarter.s3.amazonaws.com/boek_ons.png" alt="Boek Pretty Vacant *Sex Pistols Tribute* via Gigstarter">
+          </a>
+        </div>
         <p class="label" data-t="contact.volg">Volg ons</p>
         <ul class="sociaal">
           <li><a id="ig" href="#" target="_blank" rel="noopener">Instagram <span id="ig-naam"></span></a></li>
@@ -224,6 +230,16 @@
 </dialog>
 
 <script src="gegevens.js?v=20261117a"></script>
-<script src="site.js?v=20261117a"></script>
+<script src="site.js?v=20261117j"></script>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "https://gigstarter.s3.amazonaws.com/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'gigstarter-sdk'));
+</script>
 </body>
 </html>
