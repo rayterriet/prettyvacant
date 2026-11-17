@@ -22,7 +22,7 @@
       'muziek.intro': "Wil je weten hoe wij klinken? Luister dan naar onze demo's, live opgenomen tijdens onze repetities.",
       'muziek.live': 'Live spelen wij hun enige album, Never Mind the Bollocks, aangevuld met unieke nummers en covers die de originele Sex Pistols ook gespeeld hebben.',
       'muziek.demo': 'Live', 'muziek.fotoalt': 'Onze handgeschreven setlijst, vastgeplakt op het podium naast een gitaarversterker en een effectpedaal',
-      'muziek.legenda': '= live opgenomen demo, druk op de sticker om te luisteren',
+      'muziek.legenda': "Live opgenomen demo's, druk op een nummer om te luisteren:",
       'muziek.speel': 'Speel demo: ', 'muziek.pauze': 'Pauzeer demo: ',
       'top': 'Pretty Vacant, naar boven',
       'menu': 'Hoofdmenu',
@@ -70,7 +70,7 @@
       'muziek.intro': 'Want to know what we sound like? Then listen to our demos, recorded live at our rehearsals.',
       'muziek.live': 'Live, we play their one and only album, Never Mind the Bollocks, plus rare songs and covers the original Sex Pistols played too.',
       'muziek.demo': 'Live', 'muziek.fotoalt': 'Our handwritten setlist, taped to the stage next to a guitar amp and an effects pedal',
-      'muziek.legenda': '= demo recorded live, hit the sticker to listen',
+      'muziek.legenda': 'Demos recorded live, hit a song to listen:',
       'muziek.speel': 'Play demo: ', 'muziek.pauze': 'Pause demo: ',
       'top': 'Pretty Vacant, back to top',
       'menu': 'Main menu',
@@ -118,7 +118,7 @@
       'muziek.intro': 'Ihr wollt wissen, wie wir klingen? Dann hört euch unsere Demos an, live aufgenommen bei unseren Proben.',
       'muziek.live': 'Live spielen wir ihr einziges Album, Never Mind the Bollocks, ergänzt um seltene Songs und Coverversionen, die auch die originalen Sex Pistols gespielt haben.',
       'muziek.demo': 'Live', 'muziek.fotoalt': 'Unsere handgeschriebene Setlist, auf die Bühne geklebt neben einem Gitarrenverstärker und einem Effektpedal',
-      'muziek.legenda': '= live aufgenommenes Demo, auf den Sticker drücken zum Anhören',
+      'muziek.legenda': 'Live aufgenommene Demos, auf einen Song drücken zum Anhören:',
       'muziek.speel': 'Demo abspielen: ', 'muziek.pauze': 'Demo pausieren: ',
       'top': 'Pretty Vacant, nach oben',
       'menu': 'Hauptmenü',
@@ -447,8 +447,8 @@
     knop.setAttribute('aria-label', T(speelt ? 'muziek.pauze' : 'muziek.demo-knop') + knop.dataset.titel);
   }
   function tekenTracks() {
-    var lijst = $('tracks'), beeld = $('setlist-beeld'); if (!lijst || !beeld) return;
-    lijst.textContent = '';
+    var lijst = $('tracks'), beeld = $('setlist-beeld'), rij = $('demo-rij'); if (!lijst || !beeld) return;
+    lijst.textContent = ''; if (rij) rij.textContent = '';
     beeld.querySelectorAll('.sticker').forEach(function (n) { n.remove(); });
     (typeof MUZIEK !== 'undefined' ? MUZIEK : []).forEach(function (n, i) {
       lijst.appendChild(el('li', null, n.titel));
@@ -473,9 +473,21 @@
       knop.addEventListener('click', speelAf);
       markeer.addEventListener('click', speelAf);
       beeld.appendChild(st);
+      if (rij) {
+        var tk = el('button', 'demo-tekstknop');
+        tk.type = 'button'; tk.dataset.src = n.demo; tk.dataset.titel = n.titel;
+        tk.innerHTML = '<span class="tk-icoon" aria-hidden="true"><svg viewBox="0 0 24 24"><path class="i-speel" d="M7 4l13 8-13 8z"/><path class="i-pauze" d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg></span>';
+        tk.appendChild(el('span', 'tk-titel', n.titel));
+        knopStand(tk, actief === n.demo && !speler.paused);
+        tk.addEventListener('click', speelAf);
+        rij.appendChild(tk);
+      }
     });
   }
   function werkKnoppenBij() {
+    document.querySelectorAll('#demo-rij .demo-tekstknop').forEach(function (k) {
+      knopStand(k, k.dataset.src === actief && !speler.paused);
+    });
     document.querySelectorAll('#setlist-beeld .demo-knop').forEach(function (k) {
       var dit = k.dataset.src === actief;
       knopStand(k, dit && !speler.paused);

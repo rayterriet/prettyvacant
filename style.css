@@ -409,7 +409,24 @@ html .gig-actie .chip.prijs { white-space: normal; text-align: center; max-width
 @keyframes puls { from { opacity: .9; transform: scale(.9); } to { opacity: 0; transform: scale(1.25); } }
 .voortgang { width: 100%; height: 5px; background: rgba(0,0,0,.55); border-radius: 3px; overflow: hidden; }
 .voortgang-vul { display: block; height: 100%; width: 0; background: var(--geel); transition: width .25s linear; }
-.demo-legenda { margin: 22px 0 0; font-family: var(--f-type); font-size: .9rem; display: flex; align-items: center; gap: 8px; }
+.demo-legenda { margin: 26px 0 0; display: grid; gap: 12px; }
+.demo-rij { display: flex; flex-wrap: wrap; gap: 12px 14px; }
+.demo-tekstknop {
+  display: inline-flex; align-items: center; gap: 10px; cursor: pointer;
+  background: var(--zwart); color: var(--geel); border: 3px solid var(--zwart);
+  padding: 6px 16px 6px 6px; font-family: var(--f-display); text-transform: uppercase; letter-spacing: .03em; font-size: 1.05rem;
+  box-shadow: 4px 4px 0 var(--roze); transition: transform .12s, background .12s;
+}
+.demo-tekstknop:nth-child(odd) { transform: rotate(-1.5deg); }
+.demo-tekstknop:nth-child(even) { transform: rotate(1.2deg); }
+.demo-tekstknop:hover { background: var(--roze); }
+.demo-tekstknop:active { box-shadow: 0 0 0 var(--roze); }
+.tk-icoon { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; background: var(--roze); color: var(--geel); border: 2px solid var(--geel); }
+.tk-icoon svg { width: 15px; height: 15px; fill: currentColor; pointer-events: none; }
+.demo-tekstknop .i-pauze, .demo-tekstknop.speelt .i-speel { display: none; }
+.demo-tekstknop.speelt .i-pauze { display: inline; }
+.demo-tekstknop.speelt { background: var(--roze); }
+.demo-tekstknop.speelt .tk-icoon { background: var(--zwart); }
 .demo-sticker-mini { width: 18px; height: 18px; border-radius: 50%; background: var(--roze); border: 2px solid #151515; flex: none; }
 @media (max-width: 480px) { nav a[href="#muziek"] { display: none; } }
 @media (prefers-reduced-motion: reduce) { .voortgang-vul, .demo-knop { transition: none; } .demo-knop.speelt::before { animation: none; } }
