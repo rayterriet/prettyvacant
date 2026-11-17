@@ -40,7 +40,7 @@
       'tour.postertitel': 'Tourposter',
       'uur': ' uur',
       'voorprogramma': 'Voorprogramma',
-      'chip.voorbeeld': 'Voorbeeld', 'chip.uitverkocht': 'Uitverkocht', 'chip.gratis': 'Gratis', 'chip.besloten': 'Besloten', 'chip.tickets': 'Tickets',
+      'chip.voorbeeld': 'Voorbeeld', 'chip.uitverkocht': 'Uitverkocht', 'chip.gratis': 'Gratis', 'chip.besloten': 'Besloten', 'chip.tickets': 'Tickets', 'chip.prijs': 'Entree € {p}',
       'video.binnenkort': 'Binnenkort',
       'video.leeg': 'De eerste livebeelden komen hier te staan.<br>Volg ons intussen op <a class="ig-link" href="#">Instagram</a>.',
       'video.speel': 'Speel video af: ',
@@ -87,7 +87,7 @@
       'tour.postertitel': 'Tour poster',
       'uur': '',
       'voorprogramma': 'Support',
-      'chip.voorbeeld': 'Example', 'chip.uitverkocht': 'Sold out', 'chip.gratis': 'Free entry', 'chip.besloten': 'Private', 'chip.tickets': 'Tickets',
+      'chip.voorbeeld': 'Example', 'chip.uitverkocht': 'Sold out', 'chip.gratis': 'Free entry', 'chip.besloten': 'Private', 'chip.tickets': 'Tickets', 'chip.prijs': 'Entry € {p}',
       'video.binnenkort': 'Coming soon',
       'video.leeg': 'Our first live footage will appear here.<br>In the meantime, follow us on <a class="ig-link" href="#">Instagram</a>.',
       'video.speel': 'Play video: ',
@@ -134,7 +134,7 @@
       'tour.postertitel': 'Tourposter',
       'uur': ' Uhr',
       'voorprogramma': 'Vorband',
-      'chip.voorbeeld': 'Beispiel', 'chip.uitverkocht': 'Ausverkauft', 'chip.gratis': 'Eintritt frei', 'chip.besloten': 'Geschlossene Gesellschaft', 'chip.tickets': 'Tickets',
+      'chip.voorbeeld': 'Beispiel', 'chip.uitverkocht': 'Ausverkauft', 'chip.gratis': 'Eintritt frei', 'chip.besloten': 'Geschlossene Gesellschaft', 'chip.tickets': 'Tickets', 'chip.prijs': 'Eintritt {p} €',
       'video.binnenkort': 'Demnächst',
       'video.leeg': 'Hier erscheinen bald die ersten Livebilder.<br>Folgt uns bis dahin auf <a class="ig-link" href="#">Instagram</a>.',
       'video.speel': 'Video abspielen: ',
@@ -286,6 +286,7 @@
         actie.appendChild(a);
       } else if (g.status === 'gratis') actie.appendChild(el('span', 'chip gratis', T('chip.gratis')));
       else if (g.status === 'besloten') actie.appendChild(el('span', 'chip besloten', T('chip.besloten')));
+      else if (g.prijs != null) actie.appendChild(el('span', 'chip gratis prijs', T('chip.prijs').replace('{p}', String(g.prijs).replace('.', taal === 'en' ? '.' : ','))));
       if (actie.childNodes.length) li.appendChild(actie);
     }
     return li;
