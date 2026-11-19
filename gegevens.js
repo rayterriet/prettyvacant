@@ -98,13 +98,14 @@ const MUZIEK = [
 ];
 
 const VIDEOS = [
-  {
-    bestand: 'aftermovie-enschede-2026.mp4',
-    poster: 'aftermovie-enschede-2026.jpg',
-    titel: 'Aftermovie, onze allereerste try-out in De Stadsgraaf, Enschede (24-10-2026)',
-    titel_en: 'Aftermovie, our very first try-out at De Stadsgraaf, Enschede (24-10-2026)',
-    titel_de: 'Aftermovie, unser allererster Try-out im De Stadsgraaf, Enschede (24.10.2026)',
-  },
+  // TIJDELIJK UITGEZET (20-11-2026). Haal de // weg om de aftermovie terug te zetten.
+  // {
+  //   bestand: 'aftermovie-enschede-2026.mp4',
+  //   poster: 'aftermovie-enschede-2026.jpg',
+  //   titel: 'Aftermovie, onze allereerste try-out in De Stadsgraaf, Enschede (24-10-2026)',
+  //   titel_en: 'Aftermovie, our very first try-out at De Stadsgraaf, Enschede (24-10-2026)',
+  //   titel_de: 'Aftermovie, unser allererster Try-out im De Stadsgraaf, Enschede (24.10.2026)',
+  // },
   // { id: 'abc123XYZ', titel: 'Anarchy in the U.K., live in ...', titel_en: 'Anarchy in the U.K., live at ...' },
 ];
 
