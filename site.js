@@ -19,7 +19,7 @@
       'band.fotoalt': 'Pretty Vacant voor een versleten Union Jack. Van links naar rechts: Jurrien, Ronald, Ray en Arthur',
       'nav.muziek': 'Muziek',
       'muziek.kop': 'Muziek',
-      'muziek.intro': "Wil je weten hoe wij klinken? Luister dan naar onze demo's, live opgenomen tijdens onze repetities.",
+      'muziek.intro': "Wil je weten hoe wij klinken? Luister dan naar onze demo's, live opgenomen tijdens onze repetities, of luister ons op <a class=\"sc-link\" href=\"#\">SoundCloud</a>.",
       'muziek.live': 'Live spelen wij het enigste echte album van de Sex Pistols, "Never Mind the Bollocks", aangevuld met unieke nummers en covers die de originele Sex Pistols ook gespeeld hebben.',
       'muziek.demo': 'Live', 'muziek.fotoalt': 'Onze handgeschreven setlijst, vastgeplakt op het podium naast een gitaarversterker en een effectpedaal',
       'muziek.legenda': "Live opgenomen demo's, druk op een nummer om te luisteren:",
@@ -67,7 +67,7 @@
       'band.fotoalt': 'Pretty Vacant in front of a worn Union Jack. From left to right: Jurrien, Ronald, Ray and Arthur',
       'nav.muziek': 'Music',
       'muziek.kop': 'Music',
-      'muziek.intro': 'Want to know what we sound like? Then listen to our demos, recorded live at our rehearsals.',
+      'muziek.intro': 'Want to know what we sound like? Then listen to our demos, recorded live at our rehearsals, or find us on <a class="sc-link" href="#">SoundCloud</a>.',
       'muziek.live': 'Live, we play the one and only real Sex Pistols album, "Never Mind the Bollocks", plus rare songs and covers the original Sex Pistols played too.',
       'muziek.demo': 'Live', 'muziek.fotoalt': 'Our handwritten setlist, taped to the stage next to a guitar amp and an effects pedal',
       'muziek.legenda': 'Demos recorded live, hit a song to listen:',
@@ -115,7 +115,7 @@
       'band.fotoalt': 'Pretty Vacant vor einem verschlissenen Union Jack. Von links nach rechts: Jurrien, Ronald, Ray und Arthur',
       'nav.muziek': 'Musik',
       'muziek.kop': 'Musik',
-      'muziek.intro': 'Ihr wollt wissen, wie wir klingen? Dann hört euch unsere Demos an, live aufgenommen bei unseren Proben.',
+      'muziek.intro': 'Ihr wollt wissen, wie wir klingen? Dann hört euch unsere Demos an, live aufgenommen bei unseren Proben, oder hört uns auf <a class="sc-link" href="#">SoundCloud</a>.',
       'muziek.live': 'Live spielen wir das einzige echte Album der Sex Pistols, „Never Mind the Bollocks“, ergänzt um seltene Songs und Coverversionen, die auch die originalen Sex Pistols gespielt haben.',
       'muziek.demo': 'Live', 'muziek.fotoalt': 'Unsere handgeschriebene Setlist, auf die Bühne geklebt neben einem Gitarrenverstärker und einem Effektpedal',
       'muziek.legenda': 'Live aufgenommene Demos, auf einen Song drücken zum Anhören:',
@@ -226,6 +226,9 @@
     });
     document.querySelectorAll('.ig-link').forEach(function (a) {
       if (typeof BAND !== 'undefined') { a.href = BAND.instagram; a.target = '_blank'; a.rel = 'noopener'; }
+    });
+    document.querySelectorAll('.sc-link').forEach(function (a) {
+      if (typeof BAND !== 'undefined' && BAND.soundcloud) { a.href = BAND.soundcloud; a.target = '_blank'; a.rel = 'noopener'; }
     });
     document.querySelectorAll('[data-lang]').forEach(function (b) {
       b.setAttribute('aria-pressed', String(b.dataset.lang === taal));
@@ -415,14 +418,16 @@
     $('fb').href = BAND.facebook;
     if (BAND.youtube) { $('yt').href = BAND.youtube; $('yt-naam').textContent = BAND.youtubeNaam || ''; }
     else $('yt').parentNode.hidden = true;
+    if (BAND.soundcloud) { $('sc').href = BAND.soundcloud; $('sc-naam').textContent = BAND.soundcloudNaam || ''; }
+    else $('sc').parentNode.hidden = true;
   }
-  // Contactpersoon: NL toont 06-nummer, UK en DE het internationale nummer.
+  // Contactpersoon: alle talen tonen het internationale nummer (+31).
   function contactPersoon() {
     if (typeof BAND === 'undefined' || !BAND.contactTel) { $('persoon-naam').parentNode.hidden = true; return; }
     $('persoon-naam').textContent = BAND.contactNaam || '';
     $('tel').href = 'tel:' + BAND.contactTel;
-    $('tel').textContent = taal === 'nl' ? (BAND.contactTelTekst || BAND.contactTel)
-      : BAND.contactTel.replace(/^\+31(6)(\d{2})(\d{2})(\d{2})(\d{2})$/, '+31 $1 $2 $3 $4 $5');
+    $('tel').textContent = BAND.contactTelTekst
+      || BAND.contactTel.replace(/^\+31(6)(\d{2})(\d{2})(\d{2})(\d{2})$/, '+31 $1 $2 $3 $4 $5');
   }
   $('kopieer').addEventListener('click', function () {
     var knop = this;

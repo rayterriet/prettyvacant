@@ -21,10 +21,12 @@ const BAND = {
   facebook: 'https://www.facebook.com/profile.php?id=61591733096831',
   youtube: 'https://www.youtube.com/@prettyvacantsexpistolstribute',
   youtubeNaam: '@prettyvacantsexpistolstribute',
+  soundcloud: 'https://soundcloud.com/pretty-vacant-570611100',
+  soundcloudNaam: 'Pretty Vacant',
   // Contactpersoon voor boekingen (telefoon met +31, zonder spaties):
   contactNaam: 'Jurrien Schadron',
   contactTel: '+31648600032',
-  contactTelTekst: '06 48 60 00 32',
+  contactTelTekst: '+31 6 48 60 00 32',
 };
 
 /* ---------------------------------------------------------
