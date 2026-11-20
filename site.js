@@ -20,7 +20,7 @@
       'nav.muziek': 'Muziek',
       'muziek.kop': 'Muziek',
       'muziek.intro': "Wil je weten hoe wij klinken? Luister dan naar onze demo's, live opgenomen tijdens onze repetities, of luister ons op <a class=\"sc-link\" href=\"#\">SoundCloud</a>.",
-      'muziek.live': 'Live spelen wij het enigste echte album van de Sex Pistols, "Never Mind the Bollocks", aangevuld met unieke nummers en covers die de originele Sex Pistols ook gespeeld hebben.',
+      'muziek.live': 'Live spelen wij het enige echte album van de Sex Pistols, "Never Mind the Bollocks", aangevuld met unieke nummers en covers die de originele Sex Pistols ook gespeeld hebben.',
       'muziek.demo': 'Live', 'muziek.fotoalt': 'Onze handgeschreven setlijst, vastgeplakt op het podium naast een gitaarversterker en een effectpedaal',
       'muziek.legenda': "Live opgenomen demo's, druk op een nummer om te luisteren:",
       'muziek.speel': 'Speel demo: ', 'muziek.pauze': 'Pauzeer demo: ',
