@@ -14,6 +14,13 @@
   /* ---------- Teksten ---------- */
   var TEKSTEN = {
     nl: {
+      'nav.nieuws': 'Nieuws',
+      'nieuws.kop': 'Sex Pistols nieuws',
+      'nieuws.intro': 'Wat doen de echte Sex Pistols? De laatste koppen uit de pers, elke dag automatisch bijgewerkt. Klik door om het hele artikel bij de bron te lezen.',
+      'nieuws.meer': 'Meer Sex Pistols-nieuws',
+      'nieuws.leeg': 'Het nieuws wordt opgehaald. Kijk straks nog eens.',
+      'nieuws.noot': 'Koppen via Google Nieuws. De artikelen zijn van de genoemde bronnen, Pretty Vacant is niet verbonden aan de Sex Pistols.',
+      'nieuws.lees': 'Lees bij ',
       'contact.gigstarter': 'Boek via Gigstarter',
       'fotos.leeg': "Binnenkort hier de eerste livefoto's.<br>Volg ons intussen op <a class=\"ig-link\" href=\"#\">Instagram</a>.",
       'band.fotoalt': 'Pretty Vacant voor een versleten Union Jack. Van links naar rechts: Jurrien, Ronald, Ray en Arthur',
@@ -62,6 +69,13 @@
       'dagen': ['zo', 'ma', 'di', 'wo', 'do', 'vr', 'za']
     },
     en: {
+      'nav.nieuws': 'News',
+      'nieuws.kop': 'Sex Pistols news',
+      'nieuws.intro': "What are the real Sex Pistols up to? The latest headlines from the press, updated automatically every day. Click through to read the full story at the source.",
+      'nieuws.meer': 'More Sex Pistols news',
+      'nieuws.leeg': 'Fetching the news. Check back soon.',
+      'nieuws.noot': 'Headlines via Google News. Articles belong to the sources shown; Pretty Vacant is not affiliated with the Sex Pistols.',
+      'nieuws.lees': 'Read at ',
       'contact.gigstarter': 'Book via Gigstarter',
       'fotos.leeg': 'Live photos coming soon.<br>In the meantime, follow us on <a class="ig-link" href="#">Instagram</a>.',
       'band.fotoalt': 'Pretty Vacant in front of a worn Union Jack. From left to right: Jurrien, Ronald, Ray and Arthur',
@@ -110,6 +124,13 @@
       'dagen': ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
     },
     de: {
+      'nav.nieuws': 'News',
+      'nieuws.kop': 'Sex Pistols News',
+      'nieuws.intro': 'Was machen die echten Sex Pistols? Die neuesten Schlagzeilen aus der Presse, jeden Tag automatisch aktualisiert. Klickt weiter, um den ganzen Artikel bei der Quelle zu lesen.',
+      'nieuws.meer': 'Mehr Sex-Pistols-News',
+      'nieuws.leeg': 'Die News werden geladen. Schaut bald wieder vorbei.',
+      'nieuws.noot': 'Schlagzeilen über Google News. Die Artikel gehören den genannten Quellen; Pretty Vacant ist nicht mit den Sex Pistols verbunden.',
+      'nieuws.lees': 'Lesen bei ',
       'contact.gigstarter': 'Über Gigstarter buchen',
       'fotos.leeg': 'Livefotos folgen bald.<br>Folgt uns bis dahin auf <a class="ig-link" href="#">Instagram</a>.',
       'band.fotoalt': 'Pretty Vacant vor einem verschlissenen Union Jack. Von links nach rechts: Jurrien, Ronald, Ray und Arthur',
@@ -549,9 +570,44 @@
     document.head.appendChild(sc);
   })();
 
+  /* ---------- Sex Pistols nieuws (nieuws.json + eigen berichten uit gegevens.js) ---------- */
+  var NIEUWS_DATA = null;
+  var GOOGLE = { nl: 'hl=nl&gl=NL&ceid=NL:nl', en: 'hl=en-GB&gl=GB&ceid=GB:en', de: 'hl=de&gl=DE&ceid=DE:de' };
+  function nieuws() {
+    var lijst = $('nieuws-lijst'); if (!lijst) return;
+    $('nieuws-meer').href = 'https://news.google.com/search?q=%22Sex%20Pistols%22&' + GOOGLE[taal];
+    lijst.replaceChildren();
+    var eigen = (typeof NIEUWS_EXTRA !== 'undefined' ? NIEUWS_EXTRA : []).filter(function (n) { return n && n.link && n.titel; })
+      .map(function (n) { return { titel: V(n, 'titel'), bron: n.bron || '', link: n.link, datum: n.datum || '', eigen: true }; });
+    var auto = NIEUWS_DATA ? (NIEUWS_DATA[taal] || NIEUWS_DATA.en || []) : [];
+    var links = {};
+    var alles = eigen.concat(auto).filter(function (n) {
+      if (!/^https:\/\//.test(n.link) || links[n.link]) return false;
+      links[n.link] = 1; return true;
+    }).sort(function (a, b) { return String(b.datum).localeCompare(String(a.datum)); }).slice(0, 8);
+    alles.forEach(function (n) {
+      var li = el('li', 'bericht');
+      var a = el('a'); a.href = n.link; a.target = '_blank'; a.rel = 'noopener';
+      var meta = el('span', 'bericht-meta');
+      if (n.datum) {
+        var d = datum(n.datum);
+        meta.appendChild(el('span', 'bericht-datum', d.getDate() + ' ' + T('maanden')[d.getMonth()] + ' ' + d.getFullYear()));
+      }
+      if (n.bron) meta.appendChild(el('span', 'bericht-bron', n.bron));
+      a.appendChild(meta);
+      a.appendChild(el('span', 'bericht-titel', n.titel));
+      a.setAttribute('aria-label', n.titel + (n.bron ? ', ' + T('nieuws.lees') + n.bron : ''));
+      li.appendChild(a);
+      lijst.appendChild(li);
+    });
+    $('nieuws-leeg').hidden = alles.length > 0;
+  }
+  fetch('nieuws.json', { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (j) { NIEUWS_DATA = j; nieuws(); }, function () { nieuws(); });
+
   /* ---------- Alles tekenen, en opnieuw bij taalwissel ---------- */
   function teken() {
-    vasteTeksten(); contactPersoon(); knipKoppen(); band(); tour(); video(); fotos(); riders(); tekenTracks();
+    vasteTeksten(); contactPersoon(); knipKoppen(); band(); tour(); video(); fotos(); riders(); tekenTracks(); nieuws();
   }
   document.querySelectorAll('[data-lang]').forEach(function (b) {
     b.addEventListener('click', function () {

@@ -1,0 +1,34 @@
+name: Sex Pistols nieuws ophalen
+
+# Elke ochtend de laatste koppen ophalen. Handmatig starten kan ook:
+# tabblad Actions > "Sex Pistols nieuws ophalen" > Run workflow.
+on:
+  schedule:
+    - cron: '23 5 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: nieuws
+  cancel-in-progress: false
+
+jobs:
+  nieuws:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Koppen ophalen
+        run: python3 scripts/nieuws.py
+      - name: Opslaan als er iets nieuws is
+        run: |
+          if git diff --quiet -- nieuws.json; then
+            echo "Geen nieuwe koppen."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git add nieuws.json
+          git commit -m "Sex Pistols nieuws bijgewerkt"
+          git push

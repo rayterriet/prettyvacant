@@ -134,3 +134,15 @@ const RIDERS = [
   { titel: 'Hospitality rider', titel_en: 'Hospitality rider', titel_de: 'Hospitality Rider',
     omschrijving: 'Kleedkamer, catering en parkeren', omschrijving_en: 'Dressing room, catering and parking', omschrijving_de: 'Backstage, Catering und Parken', bestand: '' },
 ];
+
+/* ---------------------------------------------------------
+   SEX PISTOLS NIEUWS
+   De koppen in de nieuwssectie worden elke ochtend automatisch
+   opgehaald (bestand nieuws.json, daar hoef je niets mee).
+   Wil je zelf een artikel uitlichten? Zet het hieronder. Het komt
+   tussen de automatische koppen te staan, gesorteerd op datum.
+   titel_en en titel_de mag je weglaten.
+   --------------------------------------------------------- */
+const NIEUWS_EXTRA = [
+  // { datum: '2026-11-24', bron: 'Far Out Magazine', titel: 'Kop van het artikel', link: 'https://faroutmagazine.co.uk/...' },
+];
