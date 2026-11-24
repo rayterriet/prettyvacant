@@ -144,5 +144,10 @@ const RIDERS = [
    titel_en en titel_de mag je weglaten.
    --------------------------------------------------------- */
 const NIEUWS_EXTRA = [
+  { datum: '2026-11-24', bron: 'Far Out Magazine',
+    titel: 'Sex Pistols en Frank Carter bevestigen: de tour van 2026 wordt hun laatste',
+    titel_en: 'Sex Pistols and Frank Carter confirm 2026 tour will be their final shows',
+    titel_de: 'Sex Pistols und Frank Carter bestätigen: Die Tour 2026 wird ihre letzte',
+    link: 'https://faroutmagazine.co.uk/sex-pistols-frank-carter-confirm-2026-tour-will-be-their-final-shows/' },
   // { datum: '2026-11-24', bron: 'Far Out Magazine', titel: 'Kop van het artikel', link: 'https://faroutmagazine.co.uk/...' },
 ];
