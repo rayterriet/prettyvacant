@@ -16,29 +16,39 @@ import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
 from pathlib import Path
 
-ZOEK = '"Sex Pistols"'
+# Zoekopdrachten: de band, de (ex-)leden en het album.
+# Steve Jones en Paul Cook zijn veelvoorkomende namen, die zoeken we
+# alleen in combinatie met "Sex Pistols".
+ZOEKEN = [
+    '"Sex Pistols"',
+    '"John Lydon" OR "Johnny Rotten" OR "Glen Matlock" OR "Sid Vicious" OR "Malcolm McLaren"',
+    '"Never Mind the Bollocks"',
+    '("Steve Jones" OR "Paul Cook" OR "Frank Carter") "Sex Pistols"',
+]
+# Een kop telt alleen mee als een van deze woorden erin staat.
+RELEVANT = re.compile(r'pistols|lydon|rotten|matlock|sid vicious|mclaren|bollocks|steve jones|paul cook|frank carter', re.I)
 FEEDS = {
     'nl': ('nl', 'NL', 'NL:nl'),
     'en': ('en-GB', 'GB', 'GB:en'),
     'de': ('de', 'DE', 'DE:de'),
 }
-MAX = 8          # aantal koppen per taal
+MAX = 10         # aantal koppen per taal
 MIN_EIGEN = 4    # minder dan dit in de eigen taal? Aanvullen met Engels
 UIT = Path(__file__).resolve().parent.parent / 'nieuws.json'
 
 
-def haal(hl, gl, ceid):
+def haal(zoek, hl, gl, ceid):
     url = 'https://news.google.com/rss/search?' + urllib.parse.urlencode(
-        {'q': ZOEK, 'hl': hl, 'gl': gl, 'ceid': ceid})
+        {'q': zoek, 'hl': hl, 'gl': gl, 'ceid': ceid})
     req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0 (prettyvacant.nl nieuws)'})
     with urllib.request.urlopen(req, timeout=30) as r:
         return r.read()
 
 
-def lees(xml_bytes):
+def lees(*xml_bronnen):
     items = []
-    root = ET.fromstring(xml_bytes)
-    for it in root.iter('item'):
+    its = [it for xb in xml_bronnen for it in ET.fromstring(xb).iter('item')]
+    for it in its:
         titel = (it.findtext('title') or '').strip()
         link = (it.findtext('link') or '').strip()
         bron = (it.findtext('source') or '').strip()
@@ -50,8 +60,8 @@ def lees(xml_bytes):
             titel = titel[: -len(' - ' + bron)].strip()
         elif not bron and ' - ' in titel:
             titel, bron = titel.rsplit(' - ', 1)
-        # Alleen berichten waar de Sex Pistols echt in de kop staan.
-        if not re.search(r'pistols', titel, re.I):
+        # Alleen berichten waar de band, een (ex-)lid of het album in de kop staat.
+        if not RELEVANT.search(titel):
             continue
         try:
             d = email.utils.parsedate_to_datetime(datum).astimezone(timezone.utc)
@@ -80,7 +90,7 @@ def main():
     per_taal = {}
     for taal, (hl, gl, ceid) in FEEDS.items():
         try:
-            per_taal[taal] = lees(haal(hl, gl, ceid))
+            per_taal[taal] = lees(*[haal(z, hl, gl, ceid) for z in ZOEKEN])
         except Exception as e:
             print(f'{taal}: ophalen mislukt ({e}), oude koppen blijven staan', file=sys.stderr)
             per_taal[taal] = None
