@@ -16,7 +16,7 @@
     nl: {
       'nav.nieuws': 'Nieuws',
       'nieuws.kop': 'Sex Pistols nieuws',
-      'nieuws.intro': 'Nieuws over de Sex Pistols, de (ex-)bandleden en Never Mind the Bollocks. De laatste koppen uit de pers, elke dag automatisch bijgewerkt. Klik door om het hele artikel bij de bron te lezen.',
+      'nieuws.intro': 'Nieuws over de Sex Pistols, de (ex-)bandleden en Never Mind the Bollocks. De laatste koppen uit de pers, elke dag bijgewerkt. Klik door om het hele artikel bij de bron te lezen.',
       'nieuws.meer': 'Meer Sex Pistols-nieuws',
       'nieuws.leeg': 'Het nieuws wordt opgehaald. Kijk straks nog eens.',
       'nieuws.noot': 'Koppen via Google Nieuws. De artikelen zijn van de genoemde bronnen, Pretty Vacant is niet verbonden aan de Sex Pistols.',
@@ -71,7 +71,7 @@
     en: {
       'nav.nieuws': 'News',
       'nieuws.kop': 'Sex Pistols news',
-      'nieuws.intro': "News about the Sex Pistols, the (former) members and Never Mind the Bollocks. The latest headlines from the press, updated automatically every day. Click through to read the full story at the source.",
+      'nieuws.intro': "News about the Sex Pistols, the (former) members and Never Mind the Bollocks. The latest headlines from the press, updated every day. Click through to read the full story at the source.",
       'nieuws.meer': 'More Sex Pistols news',
       'nieuws.leeg': 'Fetching the news. Check back soon.',
       'nieuws.noot': 'Headlines via Google News. Articles belong to the sources shown; Pretty Vacant is not affiliated with the Sex Pistols.',
@@ -126,7 +126,7 @@
     de: {
       'nav.nieuws': 'News',
       'nieuws.kop': 'Sex Pistols News',
-      'nieuws.intro': 'News über die Sex Pistols, die (Ex-)Mitglieder und Never Mind the Bollocks. Die neuesten Schlagzeilen aus der Presse, jeden Tag automatisch aktualisiert. Klickt weiter, um den ganzen Artikel bei der Quelle zu lesen.',
+      'nieuws.intro': 'News über die Sex Pistols, die (Ex-)Mitglieder und Never Mind the Bollocks. Die neuesten Schlagzeilen aus der Presse, jeden Tag aktualisiert. Klickt weiter, um den ganzen Artikel bei der Quelle zu lesen.',
       'nieuws.meer': 'Mehr Sex-Pistols-News',
       'nieuws.leeg': 'Die News werden geladen. Schaut bald wieder vorbei.',
       'nieuws.noot': 'Schlagzeilen über Google News. Die Artikel gehören den genannten Quellen; Pretty Vacant ist nicht mit den Sex Pistols verbunden.',
