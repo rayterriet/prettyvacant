@@ -61,7 +61,7 @@ const TOUR = [
   { datum: '2027-02-19', zaal: 'Jolly Jug', plaats: 'Enschede', status: 'gratis' },
   { datum: '2027-03-13', tijd: '21:00', zaal: 'Rebel Yell', plaats: 'Breda', status: 'gratis' },
   { datum: '2027-04-10', zaal: 'Leuvenheim Live', plaats: 'Leuvenheim', status: 'gratis' },
-  { datum: '2027-05-28', zaal: 'Culucu Bar', adres: 'Hohe Straße 123', postcode: '47533', plaats: 'Kleve (Duitsland)', plaats_en: 'Kleve (Germany)', plaats_de: 'Kleve', land: 'DE' },
+  { datum: '2027-05-28', zaal: 'Culucu Bar', adres: 'Hohe Straße 123', postcode: '47533', plaats: 'Kleve (Duitsland)', plaats_en: 'Kleve (Germany)', plaats_de: 'Kleve', land: 'DE', status: 'gratis' },
   { datum: '2027-07-03', tijd: '21:00', zaal: 'Stage Music Cafe', plaats: 'Eindhoven', status: 'gratis' },
   { datum: '2027-10-02', tijd: '20:00', zaal: 'Hèt Café van Wervershoof', adres: 'Dorpsstraat 76', plaats: 'Wervershoof', prijs: 5 },
   // Nieuw optreden? Kopieer een regel hierboven en pas hem aan, bijvoorbeeld:
