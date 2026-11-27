@@ -544,7 +544,7 @@
         'location': {
           '@type': 'Place',
           'name': g.zaal || g.plaats,
-          'address': { '@type': 'PostalAddress', 'streetAddress': g.adres || undefined, 'addressLocality': g.plaats || '', 'addressCountry': 'NL' }
+          'address': { '@type': 'PostalAddress', 'streetAddress': g.adres || undefined, 'postalCode': g.postcode || undefined, 'addressLocality': (g.plaats || '').replace(/\s*\(.*\)$/, ''), 'addressCountry': g.land || 'NL' }
         },
         'image': 'https://prettyvacant.nl/img/deelbeeld.jpg',
         'description': 'Pretty Vacant speelt de nummers van de Sex Pistols live.',

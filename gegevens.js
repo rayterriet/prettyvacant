@@ -50,6 +50,7 @@ const LEDEN = [
    tickets (mag je weglaten): link naar de kaartverkoop
    voorprogramma en voorprogramma_tijd (mag je weglaten): naam en starttijd van de support-act
    prijs (mag je weglaten): toegangsprijs in euro's, bijvoorbeeld prijs: 10
+   land (mag je weglaten): landcode voor optredens buiten Nederland, bijvoorbeeld land: 'DE'
    De tourposter naast de lijst is img/tourposter.jpg. Nieuwe poster?
    Upload hem met precies die naam, dan vervangt hij de oude.
    --------------------------------------------------------- */
@@ -60,6 +61,7 @@ const TOUR = [
   { datum: '2027-02-19', zaal: 'Jolly Jug', plaats: 'Enschede', status: 'gratis' },
   { datum: '2027-03-13', tijd: '21:00', zaal: 'Rebel Yell', plaats: 'Breda', status: 'gratis' },
   { datum: '2027-04-10', zaal: 'Leuvenheim Live', plaats: 'Leuvenheim', status: 'gratis' },
+  { datum: '2027-05-28', zaal: 'Culucu Bar', adres: 'Hohe Straße 123', postcode: '47533', plaats: 'Kleve (Duitsland)', plaats_en: 'Kleve (Germany)', plaats_de: 'Kleve', land: 'DE' },
   { datum: '2027-07-03', tijd: '21:00', zaal: 'Stage Music Cafe', plaats: 'Eindhoven', status: 'gratis' },
   { datum: '2027-10-02', tijd: '20:00', zaal: 'Hèt Café van Wervershoof', adres: 'Dorpsstraat 76', plaats: 'Wervershoof', prijs: 5 },
   // Nieuw optreden? Kopieer een regel hierboven en pas hem aan, bijvoorbeeld:
